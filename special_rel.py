@@ -21,7 +21,6 @@ graph = pygame.Surface(graphsize)
 control = pygame.Surface(consize)
 errwin = pygame.Surface(errsize)   
 running = True
-#2/3, 1500
 img = pygame.image.load
 inactiveline = [img('inactiveline_black.png'), img('inactiveline_red.png'), img('inactiveline_blue.png'), img('inactiveline_green.png'), img('inactiveline_orange.png'), img('inactiveline_yellow.png'), img('inactiveline_purple.png'), img('inactiveline_turq.png'), img('inactiveline_brown.png'), img('inactiveline_grey.png')]
 activeline = [img('activeline_black.png'), img('activeline_red.png'), img('activeline_blue.png'), img('activeline_green.png'), img('activeline_orange.png'), img('activeline_yellow.png'), img('activeline_purple.png'), img('activeline_turq.png'), img('activeline_brown.png'), img('activeline_grey.png')]
@@ -80,8 +79,6 @@ def error(m):
         buttons.append(button)
 
 def change(f):
-    #check SR distance
-    #use i
     global state
     incx = 0.3
     incv = 0.01
@@ -142,7 +139,7 @@ class Button:
         self.btype = btype
         self.color = inactive
         self.text = btype
-        self.txt_surface = FONT.render(self.text, True, self.color)#fix color
+        self.txt_surface = FONT.render(self.text, True, self.color)
         self.buttontype = btype
         self.surf = control.get_rect()
         self.type = btype
@@ -302,8 +299,7 @@ class Obj:
                 a = (-1)**i
                 xfac = sin(self.angle*pi/180)*i*a*timetick
                 yfac = cos(self.angle*pi/180)*i*a*timetick
-                self.tickpos.append([self.tickpos[0][0]+xfac, self.tickpos[0][1]+yfac])
-                #check increment
+                self.tickpos.append([self.tickpos[0][0]+xfac, self.tickpos[0][1]+yfac]) 
             for i in range(1, 50):
                 a = (-1)**i
                 yfac = sin(self.angle*pi/180)*i*a*timetick
@@ -338,11 +334,9 @@ class Obj:
             valmax = (mousepos[0]+10.0 - self.drawpos[0])/(mousepos[1] - self.drawpos[1])
             if deg(atan(valmin)) < self.angle and deg(atan(valmax)) > self.angle:
                 self.active = True
+                #draw raster
                 if event.type == pygame.MOUSEBUTTONDOWN:
-                    for i in range(len(objs)):
-                        if objs[i] == self:
-                            change(i)
-                            break
+                    change(self.index)
             else:
                 self.active = False
         else:
