@@ -96,17 +96,17 @@ def change(f):
             if framex > incx:
                 for i in range(len(objs)):
                     x = objs[i].x - incx
-                    objs[i] = Obj(objs[i].n, x, objs[i].v, objs[i],index)
+                    objs[i] = Obj(objs[i].n, i, x, objs[i].v)
                     inputs[i].x.text = str(round(x/20, 8))
             elif framex < -incx:
                 for i in range(len(objs)):
                     x = objs[i].x + incx
-                    objs[i] = Obj(objs[i].n, x, objs[i].v, objs[i].index)
+                    objs[i] = Obj(objs[i].n, i, x, objs[i].v)
                     inputs[i].x.text = str(round(x/20, 8))
             else:
                 for i in range(len(objs)):
                     x = objs[i].x - framex
-                    objs[i] = Obj(objs[i].n, x, objs[i].v, objs[i].index)
+                    objs[i] = Obj(objs[i].n, i, x, objs[i].v)
                     inputs[i].x.text = str(round(x/20, 8))
         elif framev != 0:
             if framev > incv:
@@ -114,19 +114,19 @@ def change(f):
                     if abs(objs[i].v) !=1:
                         x = objs[i].x
                         v = (objs[i].v - incv)/(1+(objs[i].v*-incv)) 
-                        objs[i] = Obj(objs[i].n, objs[i].x, v, objs[i].index)
+                        objs[i] = Obj(objs[i].n, i, objs[i].x, v)
                         inputs[i].v.text = str(round(v, 8))
             elif framev < -incv:
                 for i in range(len(objs)):
                     if abs(objs[i].v) != 1:
                         v = (objs[i].v + incv)/(1+(objs[i].v*incv)) 
-                        objs[i] = Obj(objs[i].n, objs[i].x, v, objs[i].index)
+                        objs[i] = Obj(objs[i].n, i, objs[i].x, v)
                         inputs[i].v.text = str(round(v, 8))
             else:
                 for i in range(len(objs)):
                     if abs(objs[i].v) != 1:
                         v = (objs[i].v - framev)/(1+(objs[i].v*-framev)) 
-                        objs[i] = Obj(objs[i].n, objs[i].x, v, objs[i].index)
+                        objs[i] = Obj(objs[i].n, i, objs[i].x, v)
                         inputs[i].v.text = str(round(v, 8))
         else:
             state = None
@@ -134,9 +134,9 @@ def change(f):
 class Button: 
     def __init__(self, btype, parent = None):
         if btype == 'add':
-            self.rect = pygame.Rect(consize[0] - 200, len(inputs) * 50 +10, 140, 40)
+            self.rect = pygame.Rect(consize[0] - 80, len(inputs) * 50 +10, 70, 40)
         if btype == 'send':
-            self.rect = pygame.Rect(consize[0] - 150, len(inputs) * 50 +10, 140, 40)
+            self.rect = pygame.Rect(consize[0] - 80, len(inputs) * 50 +10, 70, 40)
         if btype == 'ok':
             self.rect = pygame.Rect(errsize[0]/2, errsize[1]/2, 140, 40)
         self.btype = btype
@@ -200,14 +200,14 @@ class Input:
                     error('char') 
             if self.v.text == '' or self.v.text == self.v.textd:
                 self.v.val = 0
-                objs[x-1] = Obj(self.n.text, self.x.val*20, self.v.val, x-1) 
+                objs[x-1] = Obj(self.n.text, x-1, self.x.val*20, self.v.val) 
             else:
                 try:
                     self.v.val = float(self.v.text)
                     if abs(self.v.val) > 1:
                         error('speed')
                     else:
-                        objs[x-1] = Obj(self.n.text, self.x.val*20, self.v.val, x-1)    
+                        objs[x-1] = Obj(self.n.text, x-1, self.x.val*20, self.v.val)    
                 except:
                     error('char')
                 
@@ -221,13 +221,13 @@ class Box(Input):
         self.parent = parent
         self.type = ttype
         if ttype == 'n':
-            x = 780
+            x = 560
             self.textd = 'name'
         if ttype == 'x':
-            x = 600
+            x = 400
             self.textd = 'position'
         if ttype == 'v':
-            x = 400
+            x = 250
             self.textd = 'speed'
         self.text = self.textd
         self.rect = pygame.Rect(consize[0]-x, len(inputs)*50+10, 140, 40) 
@@ -268,14 +268,14 @@ class Box(Input):
         pygame.draw.rect(surf, self.color, self.rect, 2)
 
 class Obj:
-    def __init__(self, n, x = 0, v = 0, i =0):
+    def __init__(self, n, i, x = 0, v = 0):
         self.n = n
         self.x = x 
         self.v = v
-        if i < 0 or i > len(inactiveline)-1:
+        if i < 0:
             self.index = 0
         else:
-            self.index = i
+            self.index = i%len(inactiveline)
         self.angle = -deg(atan(v))
         self.rotated = rotate(inactiveline[self.index], self.angle)
         self.rect = self.rotated.get_rect() 
