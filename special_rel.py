@@ -3,7 +3,6 @@ import math
 import time
 
 pygame.init()
-#rot, gelb, gruen, blau, schwarz, orange, lila, pink, grau, braun
 #colors
 active = (0, 0, 255)
 inactive = (0, 100, 100)
@@ -23,8 +22,9 @@ control = pygame.Surface(consize)
 errwin = pygame.Surface(errsize)   
 running = True
 #2/3, 1500
-inactiveline = pygame.image.load('inactiveline_black.png')
-activeline = pygame.image.load('activeline_black.png')
+img = pygame.image.load
+inactiveline = [img('inactiveline_black.png'), img('inactiveline_red.png'), img('inactiveline_blue.png'), img('inactiveline_green.png'), img('inactiveline_orange.png'), img('inactiveline_yellow.png'), img('inactiveline_purple.png'), img('inactiveline_turq.png'), img('inactiveline_brown.png'), img('inactiveline_grey.png')]
+activeline = [img('activeline_black.png'), img('activeline_red.png'), img('activeline_blue.png'), img('activeline_green.png'), img('activeline_orange.png'), img('activeline_yellow.png'), img('activeline_purple.png'), img('activeline_turq.png'), img('activeline_brown.png'), img('activeline_grey.png')]
 inactivetick = pygame.image.load('inactivetick.png')
 activetick = pygame.image.load('activetick.png')
 FONT = pygame.font.Font(None, 32)
@@ -54,11 +54,11 @@ objs = []
 buttons = []
 inputs = []
 
-xaxis = rotate(inactiveline, 90)
+xaxis = rotate(inactiveline[0], 90)
 xticks = []
 for i in range(int(graphsize[0] / 20)):
     xticks.append((rotate(inactivetick, 90), (i*20, graphsize[1]/2)))
-yaxis = inactiveline
+yaxis = inactiveline[0]
 yticks = []
 for i in range(int(graphsize[1] / 20)):
     yticks.append((inactivetick, (graphsize[0]/2, i*20)))
@@ -80,6 +80,8 @@ def error(m):
         buttons.append(button)
 
 def change(f):
+    #check SR distance
+    #use i
     global state
     incx = 0.3
     incv = 0.01
@@ -94,17 +96,17 @@ def change(f):
             if framex > incx:
                 for i in range(len(objs)):
                     x = objs[i].x - incx
-                    objs[i] = Obj(objs[i].n, x, objs[i].v)
+                    objs[i] = Obj(objs[i].n, x, objs[i].v, objs[i],index)
                     inputs[i].x.text = str(round(x/20, 8))
             elif framex < -incx:
                 for i in range(len(objs)):
                     x = objs[i].x + incx
-                    objs[i] = Obj(objs[i].n, x, objs[i].v)
+                    objs[i] = Obj(objs[i].n, x, objs[i].v, objs[i].index)
                     inputs[i].x.text = str(round(x/20, 8))
             else:
                 for i in range(len(objs)):
                     x = objs[i].x - framex
-                    objs[i] = Obj(objs[i].n, x, objs[i].v)
+                    objs[i] = Obj(objs[i].n, x, objs[i].v, objs[i].index)
                     inputs[i].x.text = str(round(x/20, 8))
         elif framev != 0:
             if framev > incv:
@@ -112,19 +114,19 @@ def change(f):
                     if abs(objs[i].v) !=1:
                         x = objs[i].x
                         v = (objs[i].v - incv)/(1+(objs[i].v*-incv)) 
-                        objs[i] = Obj(objs[i].n, objs[i].x, v)
+                        objs[i] = Obj(objs[i].n, objs[i].x, v, objs[i].index)
                         inputs[i].v.text = str(round(v, 8))
             elif framev < -incv:
                 for i in range(len(objs)):
                     if abs(objs[i].v) != 1:
                         v = (objs[i].v + incv)/(1+(objs[i].v*incv)) 
-                        objs[i] = Obj(objs[i].n, objs[i].x, v)
+                        objs[i] = Obj(objs[i].n, objs[i].x, v, objs[i].index)
                         inputs[i].v.text = str(round(v, 8))
             else:
                 for i in range(len(objs)):
                     if abs(objs[i].v) != 1:
                         v = (objs[i].v - framev)/(1+(objs[i].v*-framev)) 
-                        objs[i] = Obj(objs[i].n, objs[i].x, v)
+                        objs[i] = Obj(objs[i].n, objs[i].x, v, objs[i].index)
                         inputs[i].v.text = str(round(v, 8))
         else:
             state = None
@@ -159,7 +161,7 @@ class Button:
                     objs.append(None)
                     self.rect = pygame.Rect(consize[0] - 200, len(inputs) * 50 +10, 140, 40)
                 if self.type == 'send':
-                    for i in range(len(buttons)):
+                    for i in range(len(buttons)): 
                         if buttons[i] == self:
                             self.parent.enter('click', i)
                             break
@@ -198,16 +200,17 @@ class Input:
                     error('char') 
             if self.v.text == '' or self.v.text == self.v.textd:
                 self.v.val = 0
-                objs[x-1] = Obj(self.n.text, self.x.val*20, self.v.val) 
+                objs[x-1] = Obj(self.n.text, self.x.val*20, self.v.val, x-1) 
             else:
                 try:
                     self.v.val = float(self.v.text)
                     if abs(self.v.val) > 1:
                         error('speed')
                     else:
-                        objs[x-1] = Obj(self.n.text, self.x.val*20, self.v.val) 
+                        objs[x-1] = Obj(self.n.text, self.x.val*20, self.v.val, x-1)    
                 except:
                     error('char')
+                
 
     def update(self):
         # scroll within the box
@@ -265,12 +268,16 @@ class Box(Input):
         pygame.draw.rect(surf, self.color, self.rect, 2)
 
 class Obj:
-    def __init__(self, n, x = 0, v = 0):
+    def __init__(self, n, x = 0, v = 0, i =0):
         self.n = n
         self.x = x 
         self.v = v
+        if i < 0 or i > len(inactiveline)-1:
+            self.index = 0
+        else:
+            self.index = i
         self.angle = -deg(atan(v))
-        self.rotated = rotate(inactiveline, self.angle)
+        self.rotated = rotate(inactiveline[self.index], self.angle)
         self.rect = self.rotated.get_rect() 
         self.drawpos = [graphsize[0]/2+x-self.rect.w/2, graphsize[1]/2-self.rect.h/2] 
         self.active = False
@@ -283,7 +290,7 @@ class Obj:
             self.xline = []
             self.xlinepos = []
             xlineangle = 90 - self.angle
-            self.xline.append(rotate(inactiveline, xlineangle))
+            self.xline.append(rotate(inactiveline[self.index], xlineangle))
             xcut = pos[0]+ (self.rect.h/2.0)*tan(pi*self.angle/180.0)
             for line in self.xline:
                 rec = line.get_rect()
@@ -304,19 +311,21 @@ class Obj:
                 self.tickpos.append([self.tickpos[0][0]+xfac, self.tickpos[0][1]+yfac])
         else:
             self.xline = None
-        for i in range(len(objs)):
-            if objs[i] == self:
-                self.index = i
 
     def draw(self):
         if self.active:
-            self.rotated = rotate(activeline, self.angle)
-            self.tick = rotate(activetick, self.angle)
+            self.rotated = rotate(activeline[self.index], self.angle)
+            self.ttick = rotate(activetick, self.angle)
+            self.xtick = rotate(activetick, 90 - self.angle)
         else:
-            self.rotated = rotate(inactiveline, self.angle)
-            self.tick = rotate(inactivetick, self.angle)
-        for pos in self.tickpos:
-            graph.blit(self.tick, pos)
+            self.rotated = rotate(inactiveline[self.index], self.angle)
+            self.ttick = rotate(inactivetick, self.angle)
+            self.xtick = rotate(activetick, 90 - self.angle)
+        for i in range(len(self.tickpos)):
+            if i < 50:
+                graph.blit(self.ttick, self.tickpos[i])
+            else:
+                graph.blit(self.xtick, self.tickpos[i])
         graph.blit(self.rotated, self.drawpos)
         if self.xline != None:
             for i in range(len(self.xline)):
