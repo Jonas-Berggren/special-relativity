@@ -136,6 +136,9 @@ class Button:
             self.rect = pygame.Rect(consize[0] - 80, len(inputs) * 50 +10, 70, 40)
         if btype == 'ok':
             self.rect = pygame.Rect(errsize[0]/2, errsize[1]/2, 140, 40)
+        #close button
+        if btype == 'del':
+            self.rect = pygame.Rect(consize[0]-10, len(inputs),  10, 40)
         self.btype = btype
         self.color = inactive
         self.text = btype
@@ -165,6 +168,9 @@ class Button:
                 if self.btype == 'ok': 
                     global err
                     err = None
+                if self.btype == 'del':
+                    #delete obj and boxes and buttons.
+                    objs[x] = None
         else:
             self.color = inactive
 
@@ -207,11 +213,6 @@ class Input:
                         objs[x-1] = Obj(self.n.text, x-1, self.x.val*20, self.v.val)    
                 except:
                     error('char')
-                
-
-    def update(self):
-        # scroll within the box
-        pass
 
 class Box(Input):
     def __init__(self, parent, ttype):
@@ -254,8 +255,7 @@ class Box(Input):
                     self.text = self.text[:-1]
                 else:
                     self.text += event.unicode
-                self.txt_surface = FONT.render(self.text, True, self.color)
-        self.update()
+                self.txt_surface = FONT.render(self.text, True, self.color) 
 
     def draw(self, surf):
         self.txt_surface = FONT.render(str(self.text), True, self.color)
@@ -305,6 +305,7 @@ class Obj:
                 yfac = sin(self.angle*pi/180)*i*a*timetick
                 xfac = cos(self.angle*pi/180)*i*a*timetick
                 self.tickpos.append([self.tickpos[0][0]+xfac, self.tickpos[0][1]+yfac])
+                #grid
         else:
             self.xline = None
 
