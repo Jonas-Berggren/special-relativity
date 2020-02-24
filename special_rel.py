@@ -1,7 +1,6 @@
 import pygame
 import math
 import time
-
 pygame.init()
 #colors
 active = (0, 0, 255)
@@ -28,6 +27,7 @@ inactivetick = pygame.image.load('inactivetick.png')
 activetick = pygame.image.load('activetick.png')
 FONT = pygame.font.Font(None, 32)
 font = pygame.font.Font(None, 20)
+fontobj = pygame.font.Font(None, 25)
 graphpos = (10, 10)
 conpos = (winsize[0] - (consize[0] + 10), 10)
 errpos = (100, 100)
@@ -51,7 +51,9 @@ err = None
 #lists
 objs = []
 buttons = []
+sendbuttons = []
 inputs = []
+delbuttons = []
 
 xaxis = rotate(inactiveline[0], 90)
 xticks = []
@@ -93,17 +95,17 @@ def change(f):
             if framex > incx:
                 for i in range(len(objs)):
                     x = objs[i].x - incx
-                    objs[i] = Obj(objs[i].n, i, x, objs[i].v)
+                    objs[i] = Obj(objs[i].n, i, x, objs[i].v, objs[i].cindex)
                     inputs[i].x.text = str(round(x/20, 8))
             elif framex < -incx:
                 for i in range(len(objs)):
                     x = objs[i].x + incx
-                    objs[i] = Obj(objs[i].n, i, x, objs[i].v)
+                    objs[i] = Obj(objs[i].n, i, x, objs[i].v, objs[i].cindex)
                     inputs[i].x.text = str(round(x/20, 8))
             else:
                 for i in range(len(objs)):
                     x = objs[i].x - framex
-                    objs[i] = Obj(objs[i].n, i, x, objs[i].v)
+                    objs[i] = Obj(objs[i].n, i, x, objs[i].v, objs[i].cindex)
                     inputs[i].x.text = str(round(x/20, 8))
         elif framev != 0:
             if framev > incv:
@@ -111,19 +113,19 @@ def change(f):
                     if abs(objs[i].v) !=1:
                         x = objs[i].x
                         v = (objs[i].v - incv)/(1+(objs[i].v*-incv)) 
-                        objs[i] = Obj(objs[i].n, i, objs[i].x, v)
+                        objs[i] = Obj(objs[i].n, i, objs[i].x, v, objs[i].cindex)
                         inputs[i].v.text = str(round(v, 8))
             elif framev < -incv:
                 for i in range(len(objs)):
                     if abs(objs[i].v) != 1:
                         v = (objs[i].v + incv)/(1+(objs[i].v*incv)) 
-                        objs[i] = Obj(objs[i].n, i, objs[i].x, v)
+                        objs[i] = Obj(objs[i].n, i, objs[i].x, v, objs[i].cindex)
                         inputs[i].v.text = str(round(v, 8))
             else:
                 for i in range(len(objs)):
                     if abs(objs[i].v) != 1:
                         v = (objs[i].v - framev)/(1+(objs[i].v*-framev)) 
-                        objs[i] = Obj(objs[i].n, i, objs[i].x, v)
+                        objs[i] = Obj(objs[i].n, i, objs[i].x, v, objs[i].cindex)
                         inputs[i].v.text = str(round(v, 8))
         else:
             state = None
@@ -131,14 +133,14 @@ def change(f):
 class Button: 
     def __init__(self, btype, parent = None):
         if btype == 'add':
-            self.rect = pygame.Rect(consize[0] - 80, len(inputs) * 50 +10, 70, 40)
+            self.rect = pygame.Rect(consize[0] - 100, len(inputs) * 50 +15, 70, 40)
         if btype == 'send':
-            self.rect = pygame.Rect(consize[0] - 80, len(inputs) * 50 +10, 70, 40)
+            self.rect = pygame.Rect(consize[0] - 100, len(inputs) * 50 +15, 70, 40)
         if btype == 'ok':
             self.rect = pygame.Rect(errsize[0]/2, errsize[1]/2, 140, 40)
         #close button
-        if btype == 'del':
-            self.rect = pygame.Rect(consize[0]-10, len(inputs),  10, 40)
+        if btype == 'x':
+            self.rect = pygame.Rect(consize[0]-30, len(inputs)*50+10,  20, 20)
         self.btype = btype
         self.color = inactive
         self.text = btype
@@ -147,8 +149,9 @@ class Button:
         self.surf = control.get_rect()
         self.type = btype
         self.parent = parent
+        self.i = None 
 
-    def handle(self, event):
+    def handle(self, event): 
         if self.btype == 'ok':
             mousepos = (pygame.mouse.get_pos()[0]-errpos[0], pygame.mouse.get_pos()[1]-errpos[1])
         else:
@@ -158,19 +161,37 @@ class Button:
             if event.type == pygame.MOUSEBUTTONDOWN:
                 if self.type == 'add':
                     inputs.append(Input())
-                    objs.append(None)
-                    self.rect = pygame.Rect(consize[0] - 200, len(inputs) * 50 +10, 140, 40)
+                    objs.append(Obj())
+                    self.rect = pygame.Rect(consize[0] - 100, len(inputs) * 50 +15, 70, 40)
                 if self.type == 'send':
-                    for i in range(len(buttons)): 
-                        if buttons[i] == self:
-                            self.parent.enter('click', i)
+                    for i in range(len(sendbuttons)): 
+                        if sendbuttons[i] == self:
+                            self.parent.enter('click', i) 
                             break
                 if self.btype == 'ok': 
                     global err
                     err = None
-                if self.btype == 'del':
-                    #delete obj and boxes and buttons.
-                    objs[x] = None
+                if self.btype == 'x':
+                    for i in range(len(sendbuttons)): 
+                        if delbuttons[i] is self:
+                            x = i 
+                            break
+                    del objs[x]
+                    del sendbuttons[x]
+                    del inputs[x]
+                    del delbuttons[x]
+                    buttons[0] = Button('add')
+                    for i in range(len(inputs)):
+                        inputs[i].n.rect = pygame.Rect(consize[0]-560, i*50+15, 140, 40) 
+                        inputs[i].x.rect = pygame.Rect(consize[0]-410, i*50+15, 140, 40) 
+                        inputs[i].v.rect = pygame.Rect(consize[0]-260, i*50+15, 140, 40) 
+                    for i in range(len(sendbuttons)):
+                        sendbuttons[i].rect = pygame.Rect(consize[0] - 100, i * 50 +15, 70, 40)
+                    for i in range(len(delbuttons)):
+                        delbuttons[i].rect = pygame.Rect(consize[0]-30, i*50+10,  20, 20)
+                        if i>=x:
+                            objs[i].index -= 1
+
         else:
             self.color = inactive
 
@@ -180,6 +201,10 @@ class Button:
             errwin.blit(self.txt_surface, (self.rect.x+5, self.rect.y+5))
             # Blit the rect.
             pygame.draw.rect(errwin, self.color, self.rect, 2)       # Blit the text.
+        elif self.btype == 'x':
+            control.blit(self.txt_surface, (self.rect.x+5, self.rect.y-1))
+            # Blit the rect.
+            pygame.draw.rect(control, self.color, self.rect, 2)
         else:
             control.blit(self.txt_surface, (self.rect.x+5, self.rect.y+5))
             # Blit the rect.
@@ -190,9 +215,10 @@ class Input:
         self.n = Box(self, 'n')
         self.x = Box(self, 'x')
         self.v = Box(self, 'v')
-        buttons.append(Button('send', self))
+        sendbuttons.append(Button('send', self))
+        delbuttons.append(Button('x', self))
 
-    def enter(self, event, x):
+    def enter(self, event, x): 
         if event == 'click':
             if self.x.text == '' or self.x.text == self.x.textd:
                 self.x.val = 0
@@ -203,18 +229,18 @@ class Input:
                     error('char') 
             if self.v.text == '' or self.v.text == self.v.textd:
                 self.v.val = 0
-                objs[x-1] = Obj(self.n.text, x-1, self.x.val*20, self.v.val) 
+                objs[x] = Obj(self.n.text, x, self.x.val*20, self.v.val, x) 
             else:
                 try:
                     self.v.val = float(self.v.text)
                     if abs(self.v.val) > 1:
                         error('speed')
                     else:
-                        objs[x-1] = Obj(self.n.text, x-1, self.x.val*20, self.v.val)    
+                        objs[x] = Obj(self.n.text, x, self.x.val*20, self.v.val, x) 
                 except:
                     error('char')
 
-class Box(Input):
+class Box():
     def __init__(self, parent, ttype):
         self.parent = parent
         self.type = ttype
@@ -222,13 +248,13 @@ class Box(Input):
             x = 560
             self.textd = 'name'
         if ttype == 'x':
-            x = 400
+            x = 410
             self.textd = 'position'
         if ttype == 'v':
-            x = 250
+            x = 260
             self.textd = 'speed'
         self.text = self.textd
-        self.rect = pygame.Rect(consize[0]-x, len(inputs)*50+10, 140, 40) 
+        self.rect = pygame.Rect(consize[0]-x, len(inputs)*50+15, 140, 40) 
         self.color = inactive
         self.txt_surface = FONT.render(self.text, True, self.color)
         self.active = False
@@ -265,16 +291,23 @@ class Box(Input):
         pygame.draw.rect(surf, self.color, self.rect, 2)
 
 class Obj:
-    def __init__(self, n, i, x = 0, v = 0):
-        self.n = n
+    def __init__(self, n = '', i = None, x = 0, v = 0, ci = 0): 
+        if n == 'name':
+            self.n = ''
+        else:
+            self.n = n
         self.x = x 
         self.v = v
+        if ci < 0:
+            self.cindex = 0
+        else:
+            self.cindex = ci%len(inactiveline)
         if i < 0:
             self.index = 0
         else:
-            self.index = i%len(inactiveline)
+            self.index = i
         self.angle = -deg(atan(v))
-        self.rotated = rotate(inactiveline[self.index], self.angle)
+        self.rotated = rotate(inactiveline[self.cindex], self.angle)
         self.rect = self.rotated.get_rect() 
         self.drawpos = [graphsize[0]/2+x-self.rect.w/2, graphsize[1]/2-self.rect.h/2] 
         self.active = False
@@ -287,7 +320,7 @@ class Obj:
             self.xline = []
             self.xlinepos = []
             xlineangle = 90 - self.angle
-            self.xline.append(rotate(inactiveline[self.index], xlineangle))
+            self.xline.append(rotate(inactiveline[self.cindex], xlineangle))
             xcut = pos[0]+ (self.rect.h/2.0)*tan(pi*self.angle/180.0)
             for line in self.xline:
                 rec = line.get_rect()
@@ -308,14 +341,21 @@ class Obj:
                 #grid
         else:
             self.xline = None
+        s = 10-pos[1]
+        x = pos[0]+ s*tan(pi*self.angle/180.0)
+        self.nrect = pygame.Rect(x+5, 10, len(self.n)*20, 20) 
+        self.n_surface = fontobj.render(self.n, True, black)
+        #check for collision with other names, lines, out of frame, t label
 
     def draw(self):
+        graph.blit(self.n_surface, (self.nrect.x+4, self.nrect.y+2))
+        #pygame.draw.rect(graph, black, self.nrect, 2)
         if self.active:
-            self.rotated = rotate(activeline[self.index], self.angle)
+            self.rotated = rotate(activeline[self.cindex], self.angle)
             self.ttick = rotate(activetick, self.angle)
             self.xtick = rotate(activetick, 90 - self.angle)
         else:
-            self.rotated = rotate(inactiveline[self.index], self.angle)
+            self.rotated = rotate(inactiveline[self.cindex], self.angle)
             self.ttick = rotate(inactivetick, self.angle)
             self.xtick = rotate(activetick, 90 - self.angle)
         for i in range(len(self.tickpos)):
@@ -327,7 +367,7 @@ class Obj:
         if self.xline != None:
             for i in range(len(self.xline)):
                 graph.blit(self.xline[i], self.xlinepos[i])
-        
+
     def handle(self, event):
         mousepos = (pygame.mouse.get_pos()[0]-graphpos[0], pygame.mouse.get_pos()[1]-graphpos[1])
         if self.angle > 0:
@@ -355,7 +395,7 @@ class Obj:
 
 inputs.append(Input())
 buttons.append(Button('add'))
-objs.append(None)
+objs.append(Obj())
 
 #main loop
 while running:
@@ -363,7 +403,11 @@ while running:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             running = False
+        for button in sendbuttons:
+            button.handle(event)
         for button in buttons:
+            button.handle(event)
+        for button in delbuttons:
             button.handle(event)
         for inputbox in inputs:
             inputbox.n.handle(event)
@@ -383,6 +427,10 @@ while running:
     if state != None:
         change(state)
     #draw here
+    for button in sendbuttons:
+        button.draw()
+    for button in delbuttons:
+        button.draw()
     for button in buttons:
         button.draw()
     for inputbox in inputs:
