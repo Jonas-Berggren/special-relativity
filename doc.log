@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2020.1.5)  23 FEB 2020 01:11
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2020.1.5)  25 FEB 2020 16:56
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -481,72 +481,83 @@ Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 2
 )
 \Hy@SectionHShift=\skip43
 )
-Package hyperref Info: Option `colorlinks' set `true' on input line 10.
-
-(./doc.aux)
-\openout1 = `doc.aux'.
-
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 16.
-LaTeX Font Info:    ... okay on input line 16.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 16.
-LaTeX Font Info:    ... okay on input line 16.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 16.
-LaTeX Font Info:    ... okay on input line 16.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 16.
-LaTeX Font Info:    ... okay on input line 16.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 16.
-LaTeX Font Info:    ... okay on input line 16.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 16.
-LaTeX Font Info:    ... okay on input line 16.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 16.
-LaTeX Font Info:    ... okay on input line 16.
-\AtBeginShipoutBox=\box26
- (/usr/share/texlive/texmf-dist/tex/latex/graphics/color.sty
-Package: color 2016/07/10 v1.1e Standard LaTeX Color (DPC)
+(/usr/share/texlive/texmf-dist/tex/latex/xcolor/xcolor.sty
+Package: xcolor 2016/05/11 v2.12 LaTeX color extensions (UK)
 
 (/usr/share/texlive/texmf-dist/tex/latex/graphics-cfg/color.cfg
 File: color.cfg 2016/01/02 v1.6 sample color configuration
 )
-Package color Info: Driver file: pdftex.def on input line 147.
+Package xcolor Info: Driver file: pdftex.def on input line 225.
 
 (/usr/share/texlive/texmf-dist/tex/latex/graphics-def/pdftex.def
 File: pdftex.def 2018/01/08 v1.0l Graphics/color driver for pdftex
+)
+Package xcolor Info: Model `cmy' substituted by `cmy0' on input line 1348.
+Package xcolor Info: Model `hsb' substituted by `rgb' on input line 1352.
+Package xcolor Info: Model `RGB' extended on input line 1364.
+Package xcolor Info: Model `HTML' substituted by `rgb' on input line 1366.
+Package xcolor Info: Model `Hsb' substituted by `hsb' on input line 1367.
+Package xcolor Info: Model `tHsb' substituted by `hsb' on input line 1368.
+Package xcolor Info: Model `HSB' substituted by `hsb' on input line 1369.
+Package xcolor Info: Model `Gray' substituted by `gray' on input line 1370.
+Package xcolor Info: Model `wave' substituted by `hsb' on input line 1371.
+)
+Package hyperref Info: Option `colorlinks' set `true' on input line 11.
+ (./doc.aux)
+\openout1 = `doc.aux'.
 
-(/usr/share/texlive/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
-[Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count99
-\scratchdimen=\dimen108
-\scratchbox=\box27
-\nofMPsegments=\count100
-\nofMParguments=\count101
-\everyMPshowfont=\toks17
-\MPscratchCnt=\count102
-\MPscratchDim=\dimen109
-\MPnumerator=\count103
-\makeMPintoPDFobject=\count104
-\everyMPtoPDFconversion=\toks18
-)))
-Package hyperref Info: Link coloring ON on input line 16.
- (/usr/share/texlive/texmf-dist/tex/latex/hyperref/nameref.sty
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 17.
+LaTeX Font Info:    ... okay on input line 17.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 17.
+LaTeX Font Info:    ... okay on input line 17.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 17.
+LaTeX Font Info:    ... okay on input line 17.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 17.
+LaTeX Font Info:    ... okay on input line 17.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 17.
+LaTeX Font Info:    ... okay on input line 17.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 17.
+LaTeX Font Info:    ... okay on input line 17.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 17.
+LaTeX Font Info:    ... okay on input line 17.
+\AtBeginShipoutBox=\box26
+Package hyperref Info: Link coloring ON on input line 17.
+
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/nameref.sty
 Package: nameref 2016/05/21 v2.44 Cross-referencing by name of section
 
 (/usr/share/texlive/texmf-dist/tex/generic/oberdiek/gettitlestring.sty
 Package: gettitlestring 2016/05/16 v1.5 Cleanup title references (HO)
 )
-\c@section@level=\count105
+\c@section@level=\count99
 )
-LaTeX Info: Redefining \ref on input line 16.
-LaTeX Info: Redefining \pageref on input line 16.
-LaTeX Info: Redefining \nameref on input line 16.
+LaTeX Info: Redefining \ref on input line 17.
+LaTeX Info: Redefining \pageref on input line 17.
+LaTeX Info: Redefining \nameref on input line 17.
 
 (./doc.out) (./doc.out)
 \@outlinefile=\write3
 \openout3 = `doc.out'.
 
+
+(/usr/share/texlive/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
+[Loading MPS to PDF converter (version 2006.09.02).]
+\scratchcounter=\count100
+\scratchdimen=\dimen108
+\scratchbox=\box27
+\nofMPsegments=\count101
+\nofMParguments=\count102
+\everyMPshowfont=\toks17
+\MPscratchCnt=\count103
+\MPscratchDim=\dimen109
+\MPnumerator=\count104
+\makeMPintoPDFobject=\count105
+\everyMPtoPDFconversion=\toks18
+)
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <14.4> on input line 18.
+(Font)              <14.4> on input line 19.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <7> on input line 18.
+(Font)              <7> on input line 19.
  (./doc.toc
 LaTeX Font Info:    External font `cmex10' loaded for size
 (Font)              <12> on input line 3.
@@ -560,44 +571,76 @@ LaTeX Font Info:    External font `cmex10' loaded for size
 
  [1
 
-{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}]
-LaTeX Font Info:    Try loading font information for OMS+cmr on input line 34.
- (/usr/share/texlive/texmf-dist/tex/latex/base/omscmr.fd
+{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}] [2]
+Overfull \hbox (8.8994pt too wide) in paragraph at lines 25--27
+[]\OT1/cmr/m/n/10.95 Au^^Yerdem Erkl^^?are ich die darunter liegende Physik und
+ leite Lorentz-
+ []
+
+LaTeX Font Info:    Try loading font information for OMS+cmr on input line 38.
+(/usr/share/texlive/texmf-dist/tex/latex/base/omscmr.fd
 File: omscmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <12> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 34.
- [2]
-[3]
-Overfull \hbox (14.13101pt too wide) in paragraph at lines 89--90
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 38.
+ [3] [4]
+Overfull \hbox (2.95982pt too wide) in paragraph at lines 91--95
+\OT1/cmr/m/n/12 Au^^Yer-dem habe ich jew-eils eine Funk-tion zum wech-seln von 
+Bezugssys-tem,und
+ []
+
+[5]
+Underfull \hbox (badness 10000) in paragraph at lines 105--108
+
+ []
+
+
+Overfull \hbox (25.41931pt too wide) in paragraph at lines 121--125
+\OT1/cmr/m/n/12 von den verbleiben-den El-e-menten angepasst um das gel^^?oscht
+e El-e-ment aufzuf^^?ullen. 
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 121--125
+
+ []
+
+
+Overfull \hbox (6.55008pt too wide) in paragraph at lines 135--139
+\OT1/cmr/m/n/12 Die Funk-tion er-ror wird von der Funk-tion en-ter bei je-dem F
+ehler-fall aufgerufen.
+ []
+
+[6]
+Overfull \hbox (14.13101pt too wide) in paragraph at lines 140--141
 \OT1/cmr/m/n/12 Loedel-Minkowski-Diagramm; zwei-di-men-sion-ale Raumzeit(Zugrif
 f: 06.09.2019): 
  []
 
 
-Overfull \hbox (104.49213pt too wide) in paragraph at lines 92--94
+Overfull \hbox (104.49213pt too wide) in paragraph at lines 143--145
 [][][]$\OT1/cmr/m/n/12 https : / / stackover^^Mow . com / questions / 46390231 
 / how-[]to-[]create-[]a-[]text-[]input-[]box-[]with-[]pygame$[][]
  []
 
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 108.
-[4]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 108.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 159.
+[7]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 159.
  (./doc.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 108.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 108.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 159.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 159.
 Package rerunfilecheck Info: File `doc.out' has not changed.
-(rerunfilecheck)             Checksum: A20035BEB634EA1C9827FC77EC260709;682.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 108.
+(rerunfilecheck)             Checksum: 4D30136C41997C942A76ED7F2F563E03;1463.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 159.
  ) 
 Here is how much of TeX's memory you used:
- 5588 strings out of 492982
- 80158 string characters out of 6134897
- 171992 words of memory out of 5000000
- 9107 multiletter control sequences out of 15000+600000
+ 6008 strings out of 492982
+ 84844 string characters out of 6134897
+ 179844 words of memory out of 5000000
+ 9510 multiletter control sequences out of 15000+600000
  10013 words of font info for 35 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 28i,7n,28p,213b,332s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 28i,7n,35p,228b,332s stack positions out of 5000i,500n,10000p,200000b,80000s
 </usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></us
 r/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/shar
 e/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texl
@@ -609,10 +652,10 @@ public/amsfonts/cm/cmr17.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/
 amsfonts/cm/cmr8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts
 /cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cm
 sy8.pfb>
-Output written on doc.pdf (4 pages, 126530 bytes).
+Output written on doc.pdf (7 pages, 136205 bytes).
 PDF statistics:
- 134 PDF objects out of 1000 (max. 8388607)
- 115 compressed objects within 2 object streams
- 18 named destinations out of 1000 (max. 500000)
- 89 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 212 PDF objects out of 1000 (max. 8388607)
+ 190 compressed objects within 2 object streams
+ 33 named destinations out of 1000 (max. 500000)
+ 185 words of extra memory for PDF output out of 10000 (max. 10000000)
 

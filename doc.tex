@@ -2,6 +2,7 @@
 \usepackage[utf8]{inputenc}
 \usepackage[english]{babel}
 \usepackage{hyperref}
+\usepackage{xcolor}
 \hypersetup{
     colorlinks=true,
     linkcolor=black,
@@ -19,7 +20,10 @@
 \newpage
 \begin{abstract}
 In diesem Dokument erkläre ich wie ich ein Prgramm entwickelt habe, was Albert Einsteins spezielle Relativität visualisiert.
+Das Programm Arbeitet anhand von Monkoswki-Raumzeitdiagrammen, und nutzt Objektorientierte Programmierung.
+
 Außerdem Erkläre ich die darunter liegende Physik und leite Lorentztransformation her.
+Dabei werde ich auf Relaitivät vorr Einstein, auf Minkowski-Raumzeit-diagramme, auf Transformationen zwischen Bezugssystemen, Auf die Implikation Spezieller Relativität, und desse Einschränkungen.
 \end{abstract}
 \section{Relativität nach Newtonscher Physik}
 Bevor wir über Einsteins spezielle Relativität reden können, müssen wir das Konzept von Raum, Zeit und bewegung klarstellen
@@ -75,16 +79,63 @@ Hierbei ist das Bezugsystem des Astronauten gestrichen.
 an Bord der Rakete befindet sich eine Uhr die Zeit misst indem sie ein Photon, über eine Streck $l$ gegen einen Spiegel sendet und warte bis das Photon wiederkommt.
 Der Einfachheitskalber bewgt sich dass Licht dabei Orthogonal zur bewegungsrichtung der Rakete.
 Aus dem gestrichenen Bezugstystem ist die Zeit die das licht braucht $\Delta t' = \frac{2l}{c}$.
-Das licht aus dem Ungestrichenen Bezugsystem jedoch eine längere Streck zurücklegen namlich $s = \sqrt{l^2 + (v \Delta t)^2}$.
+Das licht aus dem Ungestrichenen Bezugsystem jedoch eine längere Streck zurücklegen namlich $s = \sqrt{l^2 + (v \Delta t')^2}$.
 Da die Licht geschwindigkeit in Beiden Systemen identisch sein muss, muss $\Delta t' < \Delta t$ gelten.
 
+
 \subsection{transformation zwischen Bezubssytemen}
-
+\subsection{Raumzeititnervall als erhaltene Größe}
 \subsection{Implikationen}
+\subsection{Einchränkungen dieses Modells}
 \section{Programm}
+Das Programm basiert auf Objekt orientierter Programmierung und mutzt das pygame Modul fur die Grafik.
+Ich habe ins gesamt vier Klassen entwickelt:
+Eine für die Darstellung der Bezugsstysteme im Diagramm, eine für die Darstellung von buttons und zwei für die Darstellung der Eingabefelder.
+Außerdem habe ich jeweils eine Funktion zum wechseln von Bezugssystem,und zum Handhaben von unzulässigen Nutzereingaben.
+\subsection{Nutzung}
+Diese Programm in python2.7 ausgeführtwerden.
+In dem rechten Feld können Geschwindigkeit und Startposisiton von Objekten eigeben werden.
+Beim klicken der send-Taste wird die Weltlinie, und die dazu gehörige Gleichzeitigkeitslinie des Objektes in das Koordinatensystem eingezeichnet.
+Es können nach belieben Objekte hinzugefügt oder entfernt werden.
+Alle sichtbaren Weltlinien kónnen angeklick werden um die Lorentz-Transformation in das jewilige Bezugsystem beobacheten zu können.
+\subsection{Button}
+Die Klasse \colorbox{gray}{Button} dient zur Darstellung und Handhabe aller buttons.
+Diese Klasse nimmt einen Typ und optional, einen parent als Argument.
+\subsubsection{Methoden}
+In dem Konstruktor wird die Box in abhängikeit von Typ definiert.
+Anschließend werden weitere Instanzvariablen, für Farbe, Aktivität, Text, Typ, Mutterobjekt definiert.
+\\
 
+Die Methode \colorbox{gray}{handle} wird in der Hauptschleife aufgerufen und nimmt pygame ereignisse als Argumente.
+In abhängikeit vom Typ wird der Ortsvektor der Maus angepasst.
+Wenn sich die Maus über ein dem button befindet wird der Activitäszustand auf True gesetzt, andern Falls auf False.
+Jenach Aktivitätszustand wird in der Methode \colorbox{gray}{draw} die Farbe ändert, was ein Hoverfunktion darstellt.
+Befindet sich die Maus über \colorbox{gray}{self}, wird dann bei einem Klick, zwische den Typen unterschieden.
+Ist \colorbox{gray}{self.type} gleich add, wird der Liste der \colorbox{gray}{objs} eine Instanz von \colorbox{gray}{Obj} hinzugefügt.
+Außerdem wird die Position von \colorbox{gray}{self.rect} angepasst.
 
+Ist \colorbox{gray}{self.type} gleich send wird der index von \colorbox{gray}{self} ermittelt, und der Methode \colorbox{gray}{enter} übergeben, die in Abschnitt \ref{inputm} näher erläutert wird.
 
+Ist \colorbox{gray}{self.type} gleich ok wird die globale Variable \colorbox{gray}{err} Nne gesetzt.
+
+Ist \colorbox{gray}{self.type} gleich x wird der index von \colorbox{gray}{self} ermittelt.
+Anschleißend wird dieser Index genutzt, um die jeweiligen einträge in dem Listen \colorbox{gray}{objs}, \colorbox{gray}{delbuttons}, \colorbox{gray}{inputs} und \colorbox{gray}{sendbuttons}.
+anschließend werden die Position von den verbleibenden Elementen angepasst um das gelöschte Element aufzufüllen.
+\\
+
+Die Methode \colorbox{gray}{draw} wird in der Hauptschleife aufgerufen und zeichnet je nach Typ \colorbox{gray}{self.rect} und \colorbox{gray}{self.txt} auf die unterschiedlichen Flächen.
+\subsection{Input}
+\subsubsection{Methoden}
+\label{inputm}
+\subsection{Box}
+\subsubsection{Methoden}
+\subsection{Obj}
+\subsubsection{Methoden}
+\subsection{Funktionen}
+Die Funktion error wird von der Funktion enter bei jedem Fehlerfall aufgerufen.
+Es wird ein Fallspezifischer Fehlerwert übergeben.
+Die Funktion error erstellt ein Fenster auf dem eine fehlerspezifische Nachricht angezeigt wird.
+Außerdem wir ein 'ok' button erstellt mit dem das fenster wieder geschlossen werden kann.
 \section{Quellen}
 Loedel-Minkowski-Diagramm; zweidimensionale Raumzeit(Zugriff: 06.09.2019):
 
@@ -106,4 +157,3 @@ Fourvelocity
 Gleichzeitigkeit t = vx
 Linie der Gleichzeitigkeit ist die Spigelung der Weltline entlang der Lichtlinie
 \end{document}
-

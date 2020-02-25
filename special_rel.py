@@ -2,6 +2,7 @@ import pygame
 import math
 import time
 #adjust ticks on th axis
+#draw worldline as active line
 pygame.init()
 #colors
 active = (0, 0, 255)
@@ -220,10 +221,8 @@ class Input:
             xval, vval = 0, 0
             if self.x.text != '' and self.x.text != self.x.textd:
                 xval = self.x.text
-                print 'x'
             if self.v.text != '' and self.v.text != self.v.textd:
-                vval = self.v.text
-                print 'v'
+                vval = self.v.text 
             try:
                 xval = float(xval)
                 vval = float(vval)
@@ -287,13 +286,14 @@ class Box():
         pygame.draw.rect(surf, self.color, self.rect, 2)
 
 class Obj:
-    def __init__(self, n = '', i = None, x = 0, v = 0, ci = 0): 
+    def __init__(self, n = '', i = None, x = 0, v = 0, ci = 0):
         if n == 'name':
             self.n = ''
         else:
             self.n = n
         self.x = x 
         self.v = v
+        #check indexess
         if ci < 0:
             self.cindex = 0
         else:
@@ -303,8 +303,8 @@ class Obj:
         else:
             self.index = i
         self.angle = -deg(atan(v))
-        self.line = rotate(inactiveline[self.cindex], self.angle)
-        self.rect = self.line.get_rect() 
+        self.line = rotate(inactiveline[self.cindex], self.angle)#check needed
+        self.rect = self.line.get_rect()#check if instancevariable 
         self.linepos = [[graphsize[0]/2+x-self.rect.w/2, graphsize[1]/2-self.rect.h/2]]
         self.active = False
         if self.angle < 0:
@@ -322,6 +322,7 @@ class Obj:
 
             timetick = 20/root(1-v**2) 
             self.tickpos = [[xcut, pos[1] + self.rect.h/2]]
+            #combine
             for i in range(1, 50):
                 a = (-1)**i
                 xfac = sin(self.angle*pi/180)*i*a*timetick
@@ -434,9 +435,8 @@ while running:
             inputbox.x.handle(event)
             inputbox.v.handle(event)
             
-        for obj in objs:
-            if isinstance(obj, Obj):#whats that
-                obj.handle(event)
+        for obj in objs: 
+            obj.handle(event)
 
     graph.blit(xaxis, [0, graphsize[1]/2])
     for tick in xticks:#check whats up with ticks
@@ -457,9 +457,8 @@ while running:
         inputbox.n.draw(control)
         inputbox.x.draw(control)
         inputbox.v.draw(control)
-    for obj in objs:
-        if isinstance(obj, Obj):#whats that
-            obj.draw()
+    for obj in objs: 
+        obj.draw()
     graph.blit(txt_t, (txt_t_rect.x, txt_t_rect.y))
     graph.blit(txt_ct, (txt_ct_rect.x, txt_ct_rect.y))
 
@@ -474,5 +473,4 @@ while running:
     errwin.fill(white)
     win.fill(grey)
     clock.tick(30)
-    endtime = time.time()#delete
 pygame.quit()
