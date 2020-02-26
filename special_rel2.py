@@ -1,8 +1,6 @@
 import pygame
 import math
 import time
-#adjust ticks on th axis
-#draw worldline as active line
 pygame.init()
 #colors
 active = (0, 0, 255)
@@ -12,12 +10,20 @@ grey = (200, 200, 200)
 black = (0, 0, 0)
 txt_colors = [black, [255, 0, 0], [0, 0, 255], [0, 255, 0], [255, 122, 0], [255, 255, 0], [255, 0, 255], [0, 255, 255], [112, 77, 57], grey]
 #globals
-winsize = (1800, 900)
+#winsize = (1800, 900)
 graphsize = (800, 800)
 consize = (800, 800)
 boxsize = (400, 400)
 errsize = (400, 400)
+winsize = pygame.display.Info()
+winsize = winsize.masks
+winsize = (int(winsize[0]/9300), int(winsize[1]/73))
+
+print winsize
+#win = pygame.display.set_mode((infoObject.current_w, infoObject.current_h))
+#win = pygame.display.set_mode((0,0),pygame.FULLSCREEN)
 win = pygame.display.set_mode(winsize, 0, 32)#use idsplaysize
+
 graph = pygame.Surface(graphsize)
 control = pygame.Surface(consize)
 errwin = pygame.Surface(errsize)   
@@ -48,6 +54,8 @@ txt_t_rect = pygame.Rect(graphsize[0]/2 + 20, 20, 40, 40)
 txt_ct_rect = pygame.Rect(graphsize[0] - 40, graphsize[1]/2 + 20, 40, 40)
 increment = 0.1
 err = None
+incx = 1.0
+incv = 0.01
 
 #lists
 objs = []
@@ -58,12 +66,12 @@ delbuttons = []
 
 xaxis = rotate(inactiveline[0], 90)
 xticks = []
-for i in range(int(graphsize[0] / 20)):
-    xticks.append((rotate(inactivetick, 90), (i*20, graphsize[1]/2)))
+for i in range(int(graphsize[0] / 40)):
+    xticks.append((rotate(inactivetick, 90), (i*40, graphsize[1]/2)))
 yaxis = inactiveline[0]
 yticks = []
-for i in range(int(graphsize[1] / 20)):
-    yticks.append((inactivetick, (graphsize[0]/2, i*20)))
+for i in range(int(graphsize[1] / 40)):
+    yticks.append((inactivetick, (graphsize[0]/2, i*40)))
 
 def error(m):
     global err 
@@ -81,8 +89,6 @@ def error(m):
 
 def change(f):
     global state
-    incx = 1.0
-    incv = 0.01
     framex = objs[f].x
     framev = objs[f].v
     framet = objs[f].t
@@ -222,17 +228,13 @@ class Button:
 
     def draw(self):
         if self.type == 'ok':
-            # Blit the text.
             errwin.blit(self.txt, (self.rect.x+5, self.rect.y+5))
-            # Blit the rect.
-            pygame.draw.rect(errwin, self.color, self.rect, 2)       # Blit the text.
+            pygame.draw.rect(errwin, self.color, self.rect, 2)
         elif self.type == 'x':
             control.blit(self.txt, (self.rect.x+5, self.rect.y-1))
-            # Blit the rect.
             pygame.draw.rect(control, self.color, self.rect, 2)
         else:
             control.blit(self.txt, (self.rect.x+5, self.rect.y+5))
-            # Blit the rect.
             pygame.draw.rect(control, self.color, self.rect, 2)
 
 class Input:
@@ -308,9 +310,7 @@ class Box():
 
     def draw(self, surf):
         self.txt_surface = FONT.render(str(self.text), True, self.color)
-        # Blit the text.
         surf.blit(self.txt_surface, (self.rect.x+5, self.rect.y+5))
-        # Blit the rect.
         pygame.draw.rect(surf, self.color, self.rect, 2)
 
 class Obj:
@@ -321,8 +321,7 @@ class Obj:
             self.n = n
         self.x = x 
         self.v = v
-        self.t = t
-        #check indexess
+        self.t = t 
         if ci < 0:
             self.cindex = 0
         else:
@@ -332,9 +331,9 @@ class Obj:
         else:
             self.index = i
         self.angle = -deg(atan(v))
-        self.line = rotate(inactiveline[self.cindex], self.angle)#check needed
-        self.rect = self.line.get_rect()#check if instancevariable 
-        self.linepos = [[graphsize[0]/2+x-self.rect.w/2, (graphsize[1]/2-self.rect.h/2)+t]]#tricky
+        self.line = rotate(inactiveline[self.cindex], self.angle)
+        self.rect = self.line.get_rect()
+        self.linepos = [[graphsize[0]/2+x-self.rect.w/2, (graphsize[1]/2-self.rect.h/2)+t]]
         self.active = False
         if self.angle < 0:
             pos = [self.linepos[0][0]+self.rect.w, self.linepos[0][1]]
@@ -348,29 +347,22 @@ class Obj:
             self.xline = rotate(inactiveline[self.cindex], xlineangle)
             rect = self.xline.get_rect()
             self.xlinepos = [[xcut-rect.w/2.0, pos[1]+(self.rect.h-rect.h)/2.0]]  
-            timetick = 20/root(1-v**2) 
+            timetick = 40/root(1-v**2) 
             self.tickpos = [[xcut, pos[1] + self.rect.h/2]]
-            #combine
             for i in range(1, 50):
-                a = (-1)**i
-                xfac = sin(self.angle*pi/180)*i*a*timetick
-                yfac = cos(self.angle*pi/180)*i*a*timetick
-                self.tickpos.append([self.tickpos[0][0]+xfac, self.tickpos[0][1]+yfac]) 
-            for i in range(1, 50):
-                a = (-1)**i
-                yfac = sin(self.angle*pi/180)*i*a*timetick
-                xfac = cos(self.angle*pi/180)*i*a*timetick
+                yfac = sin(self.angle*pi/180)*i*timetick
+                xfac = cos(self.angle*pi/180)*i*timetick
                 self.tickpos.append([self.tickpos[0][0]+xfac, self.tickpos[0][1]+yfac])
-            for i in range(1,50):
-                a = (-1)**i
-                xfac = sin(self.angle*pi/180)*i*a*timetick
-                yfac = cos(self.angle*pi/180)*i*a*timetick
-                self.xlinepos.append([self.xlinepos[0][0]+xfac,self.xlinepos[0][1]+yfac])
+                self.tickpos.append([self.tickpos[0][0]+yfac, self.tickpos[0][1]+xfac]) 
+                self.tickpos.append([self.tickpos[0][0]-xfac, self.tickpos[0][1]-yfac])
+                self.tickpos.append([self.tickpos[0][0]-yfac, self.tickpos[0][1]-xfac]) 
             for i in range(1,100):
-                a = (-1)**i
-                xfac = cos(self.angle*pi/180)*i*a*timetick+20
-                yfac = sin(self.angle*pi/180)*i*a*timetick
+                xfac = cos(self.angle*pi/180)*i*timetick
+                yfac = sin(self.angle*pi/180)*i*timetick
+                self.xlinepos.append([self.xlinepos[0][0]+yfac,self.xlinepos[0][1]+xfac])
+                self.xlinepos.append([self.xlinepos[0][0]-yfac,self.xlinepos[0][1]-xfac])
                 self.linepos.append([self.linepos[0][0]+xfac, self.linepos[0][1]+yfac])
+                self.linepos.append([self.linepos[0][0]-xfac, self.linepos[0][1]-yfac])
         else:
             self.xline = None
         s = 10-pos[1]
@@ -400,17 +392,21 @@ class Obj:
         else:
             self.line = rotate(inactiveline[self.cindex], self.angle)
         for i in range(len(self.tickpos)):
-            if i < 50:
+            if i%2 == 0:
                 graph.blit(self.ttick, self.tickpos[i])
             else:
                 graph.blit(self.xtick, self.tickpos[i])
-
         if self.xline != None:
             if self.active:
                 for pos in self.xlinepos:
                     graph.blit(self.xline, pos)
+                first = True
                 for pos in self.linepos:
                     graph.blit(self.line, pos) 
+                    if first:
+                        self.line = rotate(inactiveline[self.cindex], self.angle)
+                        first = False
+
             else:
                 graph.blit(self.line, self.linepos[0])
                 graph.blit(self.xline, self.xlinepos[0])
@@ -466,7 +462,7 @@ while running:
             obj.handle(event)
 
     graph.blit(xaxis, [0, graphsize[1]/2])
-    for tick in xticks:#check whats up with ticks
+    for tick in xticks:
         graph.blit(tick[0], tick[1])
     graph.blit(yaxis, [graphsize[0]/2, 0])
     for tick in yticks:

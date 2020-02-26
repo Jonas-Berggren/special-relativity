@@ -1,4 +1,5 @@
 \documentclass[12pt]{article}
+\usepackage{siunitx}
 \usepackage[utf8]{inputenc}
 \usepackage[english]{babel}
 \usepackage{hyperref}
@@ -85,8 +86,50 @@ Da die Licht geschwindigkeit in Beiden Systemen identisch sein muss, muss $\Delt
 
 \subsection{transformation zwischen Bezubssytemen}
 \subsection{Raumzeititnervall als erhaltene Größe}
+Nach der speziellen Relativität sind Raum, Zeit und sogar die Reihenfolge von ereignissen relativ.
+Es wirkt so als nur die Lichgeschwindigkeit konstant.
+Es gibt aber eine weiter Größe die unter Lorenztransformation invariant bleibt:
+Die sogenannte Eigenzeit
+\begin{equation}
+\tau^2 = (\Delta ct)^2 - {\Delta x}^2 - {\Delta y}^2 - {\Delta z}^2
+\end{equation}
+Wobei $\Delta t$der Zeitlcihen und $\Delta x, y, z$ den räumlihen Abstand zwisch zei ereignisse darstellen.
+$\tau$ kann im Minkowski-Diagramm als Vektor dargestellt werde der die Ereignisse verbindet.
+
+Diese Größe kann durch die Kombination aus negativen Raumkomponente uns positiver Zeitkomponenten im gesamten Reellen bereicih definiert.
+Was für ein Wert diese Größe hat hat aufwirhung darauf worüber sich beobachter uneinig sein können.
+
+Ist $\tau$ negativ können sich Beobachter über die Reinfolge der Ergnisse uneinug sein.
+Außerdem können sich die beiden Ereignisse nicht beeinflussen.
+Dies ist im Diagramm daran zu erkennen, dass der Winkel zwischen $\tau$ und der $ct$-Achse kleiner als \ang{45} ist.
+Somit sind auch Gleichzeitigkeitslinien zulässig die Steiler sind als $\tau$.
+Weltlinien die flacher sind als $\tau$ sind jedoch unzulässig
+
+Gilt $\tau = 0$ so kann das eine Ereigniss das ander durch ein Lichtteilchen beinflussen, jedoch nicht durch ein massebehaftetes Signal.
+
+Ist $\tau$ positiv ist die Reinfolge der Ereignisse unversell.
+In dem Fall entspricht $\tau$ der Zeit die eine Uhr zwischen den Ereignissen messen würde, die sich von dem ersten zu den zweiten Ereignis bewegt.
 \subsection{Implikationen}
 \subsection{Einchränkungen dieses Modells}
+Spezielle Relativität beschreibt nur inertiale Bezugssysteme in einer Flache Raumzeit.
+
+Inertiale Bezugsysteme sind unbeschleunigt.
+Ein Ball der mit einer Geschwindigkeit gleich null losgelassen wird behält seine Position bei.
+
+Dies löst zum Beispiel das bekannt Zwilligspardoxon:
+Ein Zwilling Fährt auf eine Raummision bei der er mit beispielsweise halber Lichtgeschwindigkeit durch das All fliegt, während sein Bruder auf der Erde vebleibt.
+Als er zur Erde zurückkehrt stellt sich die Frage wer nun älter ist
+Nach der Speziellen Relativitität können sich beide Zwillinge für den Zeitraum der mission als statisch betrachten und den anderen als bewegt.
+demnach kommen beide zudem Schluss, dass sie selbs jünger sein sollten.
+
+Dabei wird jedoch vernachlässigt, dass der Astronaut beispielsweis zu Alphacentauri fliegt dort umkehrt und wiederkommt.
+Dabei erfäht er eine Beschleungiung, die die Spezielle Relativität nicht vorsieht.
+
+Nehme man an der Astronaut führe bei Alphacentauri ein Swingby-Manöver durch und ändere so seine Richtung, so würdeer sich nicht in einer Flachen Raumzeitbewegen.
+
+Diese überlegung führt usn in die Algemeine Relativität, die sich maßgeblich von Newtons Gravitation unterscheidet.
+Gravitation wird nicht mehr als Kraftfeld beschrieben sondern als Raumzeitkrümmung, die die inertiale Laufbahn von objekten verändert.
+
 \section{Programm}
 Das Programm basiert auf Objekt orientierter Programmierung und mutzt das pygame Modul fur die Grafik.
 Ich habe ins gesamt vier Klassen entwickelt:

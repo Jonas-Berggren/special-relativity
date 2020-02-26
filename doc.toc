@@ -7,18 +7,18 @@
 \contentsline {subsection}{\numberline {2.1}Herleitung}{5}{subsection.2.1}
 \contentsline {subsection}{\numberline {2.2}transformation zwischen Bezubssytemen}{5}{subsection.2.2}
 \contentsline {subsection}{\numberline {2.3}Raumzeititnervall als erhaltene Gr\IeC {\"o}\IeC {\ss }e}{5}{subsection.2.3}
-\contentsline {subsection}{\numberline {2.4}Implikationen}{5}{subsection.2.4}
-\contentsline {subsection}{\numberline {2.5}Einchr\IeC {\"a}nkungen dieses Modells}{5}{subsection.2.5}
-\contentsline {section}{\numberline {3}Programm}{5}{section.3}
-\contentsline {subsection}{\numberline {3.1}Nutzung}{5}{subsection.3.1}
-\contentsline {subsection}{\numberline {3.2}Button}{6}{subsection.3.2}
-\contentsline {subsubsection}{\numberline {3.2.1}Methoden}{6}{subsubsection.3.2.1}
-\contentsline {subsection}{\numberline {3.3}Input}{7}{subsection.3.3}
-\contentsline {subsubsection}{\numberline {3.3.1}Methoden}{7}{subsubsection.3.3.1}
-\contentsline {subsection}{\numberline {3.4}Box}{7}{subsection.3.4}
-\contentsline {subsubsection}{\numberline {3.4.1}Methoden}{7}{subsubsection.3.4.1}
-\contentsline {subsection}{\numberline {3.5}Obj}{7}{subsection.3.5}
-\contentsline {subsubsection}{\numberline {3.5.1}Methoden}{7}{subsubsection.3.5.1}
-\contentsline {subsection}{\numberline {3.6}Funktionen}{7}{subsection.3.6}
-\contentsline {section}{\numberline {4}Quellen}{7}{section.4}
-\contentsline {section}{\numberline {5}Notizen}{7}{section.5}
+\contentsline {subsection}{\numberline {2.4}Implikationen}{6}{subsection.2.4}
+\contentsline {subsection}{\numberline {2.5}Einchr\IeC {\"a}nkungen dieses Modells}{6}{subsection.2.5}
+\contentsline {section}{\numberline {3}Programm}{6}{section.3}
+\contentsline {subsection}{\numberline {3.1}Nutzung}{7}{subsection.3.1}
+\contentsline {subsection}{\numberline {3.2}Button}{7}{subsection.3.2}
+\contentsline {subsubsection}{\numberline {3.2.1}Methoden}{7}{subsubsection.3.2.1}
+\contentsline {subsection}{\numberline {3.3}Input}{8}{subsection.3.3}
+\contentsline {subsubsection}{\numberline {3.3.1}Methoden}{8}{subsubsection.3.3.1}
+\contentsline {subsection}{\numberline {3.4}Box}{8}{subsection.3.4}
+\contentsline {subsubsection}{\numberline {3.4.1}Methoden}{8}{subsubsection.3.4.1}
+\contentsline {subsection}{\numberline {3.5}Obj}{8}{subsection.3.5}
+\contentsline {subsubsection}{\numberline {3.5.1}Methoden}{8}{subsubsection.3.5.1}
+\contentsline {subsection}{\numberline {3.6}Funktionen}{8}{subsection.3.6}
+\contentsline {section}{\numberline {4}Quellen}{8}{section.4}
+\contentsline {section}{\numberline {5}Notizen}{8}{section.5}
