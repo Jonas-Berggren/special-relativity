@@ -18,12 +18,7 @@ errsize = (400, 400)
 winsize = pygame.display.Info()
 winsize = winsize.masks
 winsize = (int(winsize[0]/9300), int(winsize[1]/73))
-
-print winsize
-#win = pygame.display.set_mode((infoObject.current_w, infoObject.current_h))
-#win = pygame.display.set_mode((0,0),pygame.FULLSCREEN)
 win = pygame.display.set_mode(winsize, 0, 32)#use idsplaysize
-
 graph = pygame.Surface(graphsize)
 control = pygame.Surface(consize)
 errwin = pygame.Surface(errsize)   
@@ -314,7 +309,7 @@ class Box():
         pygame.draw.rect(surf, self.color, self.rect, 2)
 
 class Obj:
-    def __init__(self, n = '', i = None, x = 0, v = 0, ci = 0, t = 0):
+    def __init__(self, n = '', i = 0, x = 0, v = 0, ci = 0, t = 0):
         if n == 'name':
             self.n = ''
         else:
