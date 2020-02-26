@@ -73,17 +73,26 @@ Dies wirft direkt eine Frage auf:
 Wenn jemeand mich mit einer Taschenlampe anleuchtet wahrend ich mich auf ihn zu bewge, wie kann es dann sein, dass wir beiden den exakt gleichen wert für die Beschwindigkeit diese licht messen?
 Das Pstulat ist also nicht mit der Formel \ref{vnewton} vereinbar.
 \subsection{Herleitung}
-Nehmen wir folgendes Szenarion an:
-
-Es wir eine Person auf der Erde und eine Person an Bord einer Rakete btrachtete die sich relativ zur Erde mit einer Geschwindikeit $v$ bewegt.
-Hierbei ist das Bezugsystem des Astronauten gestrichen.
-an Bord der Rakete befindet sich eine Uhr die Zeit misst indem sie ein Photon, über eine Streck $l$ gegen einen Spiegel sendet und warte bis das Photon wiederkommt.
-Der Einfachheitskalber bewgt sich dass Licht dabei Orthogonal zur bewegungsrichtung der Rakete.
-Aus dem gestrichenen Bezugstystem ist die Zeit die das licht braucht $\Delta t' = \frac{2l}{c}$.
-Das licht aus dem Ungestrichenen Bezugsystem jedoch eine längere Streck zurücklegen namlich $s = \sqrt{l^2 + (v \Delta t')^2}$.
-Da die Licht geschwindigkeit in Beiden Systemen identisch sein muss, muss $\Delta t' < \Delta t$ gelten.
-
-
+Es werrde zwei Bezugsstysteme bertachtet, die sich relativ zu einander mit der Geschwindigkeit $v \neq 0$ bewegen.
+In dem ungestrichenen Bezugssystem fliegt ein Photon zwischen zwei Spiegeln hin und her, die $l$ von einander entfernt sind.
+Um von eine Spiegel zum anderen zu gelangen muss das licht vom gestrichen System aus gesehen eine Größere Strecke $d$ zurücklegen, nähmlich:
+\begin{equation}
+d^2 = l^2 + (vt')^2
+\end{equation}
+Da $d \neq l$ gilt aber beide Strecken mit der gleichen Geschwindigkeit zurückgeleggt werden muss $t' \neq t$gelten.
+DrÚckt man $d$ und $l$ in $c$ aus so gilt:
+\begin{equation}
+c^2t'^2 = c^2t^2 + v^2t'^2
+\end{equation}
+Dies kann dann durch substrahieren von $v^2t'^2$ um auskammern von $t'^2$ nach $t'$ augelöst werden.
+dann gilt:
+\begin{equation}
+t' = \frac{t}{\sqrt{1-\frac{v^2}{c^2}}}
+\end{equation}
+Teilt man nochtmal durch $t$ ergibt sich der Relativitätsfaktor $\gamma$:
+\begin{equation}
+\gamma = \frac{1}{\sqrt{1-\frac{v^2}{c^2}}}
+\end{equation}
 \subsection{transformation zwischen Bezubssytemen}
 \subsection{Raumzeititnervall als erhaltene Größe}
 Nach der speziellen Relativität sind Raum, Zeit und sogar die Reihenfolge von ereignissen relativ.
@@ -168,11 +177,34 @@ anschließend werden die Position von den verbleibenden Elementen angepasst um d
 
 Die Methode \colorbox{gray}{draw} wird in der Hauptschleife aufgerufen und zeichnet je nach Typ \colorbox{gray}{self.rect} und \colorbox{gray}{self.txt} auf die unterschiedlichen Flächen.
 \subsection{Input}
+Die Klaase \colorbox{gray}{Input} erstellt Eingabefelder indem sie drei Intsnazen der Klasse Box erstellt.
+Der Sinn dieser Klasse ist, die Liste der Eingabefelder besser zu organisieren damit indexe leichter gehandhbt werden kónnen.
 \subsubsection{Methoden}
+Diese Klasse hat bis auf den Konstruktor nur die Methode \colorbox{gray}{enter}.
+Sie beim Klicken des 'send' Buttons aufgerufen.
+Sie prüft die Eignaben in dem jeweiligen Feldern auf zulässigkeit.
+Es wird überprüft ob Parameter die Zahlen sein sollen Zahlen sind, und das keine Geschwindigkeit über der Lichtgeschwindigkeit eingegeben wird.
+Wir ein unzulässige Eingabe erkannt wird die Funktion \colorbox{gray}{err} aufgerufen, die eine Fallspezifische Fehlermeldung anzeigt.
+Sind Felder leer, weredn Standardwert ergenzt.
+Anschießend wird mit ermittelten den Parametern eine neue Instanz von \colorbox{gray}{Obj} erstellt.
 \label{inputm}
 \subsection{Box}
+Die Klasse \colorbox{gray}{Box} ist die eingentlcihe Maschienrie hinter den Eingabefeldern.
+Jenachde was für Parameter übergeben werden, wir \colorbox{gray}{self} zum Namens-, Positions- oder Geschwindiggkeitsfeld.
+Demnac werden Position, und Standrdinhalt angepasst.
 \subsubsection{Methoden}
+Die Methode \colorbox{gray}{handle} wird in der Hauptscheife aufgerufen, und nimmt pygameevents als Parameter.
+wird das Feld angeklick, wird Der Standardinhalt entfernt und \colorbox{gray}{self.active} gleich True gesetzt.
+Wird woanders hingeklickt, werde sie Veränderungen wieder rückgängig gemacht.
+Demanch wird auch die Farbe des Feldes angepasst.
+Ist anschließend \colorbox{gray}{self.active} True werden die Tastatureingaben gespeichert.
+\\
+\colorbox{gray}{draw} Zeigt dann den passenden Text und das Felde in der richtigen Farbe.
 \subsection{Obj}
+\colorbox{gray}{Obj} ist das Herzstück des Programms.
+Es handhabt alle Einträge in das Diagramm.
+Es Arguente, die den Namen, den Index, die Position, die Geschwindigkeit, den Farbindex und t = 0 definieren.
+
 \subsubsection{Methoden}
 \subsection{Funktionen}
 Die Funktion error wird von der Funktion enter bei jedem Fehlerfall aufgerufen.

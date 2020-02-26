@@ -1,24 +1,25 @@
 import pygame
 import math
 import time
+#check ticks
 pygame.init()
 #colors
 active = (0, 0, 255)
 inactive = (0, 100, 100)
 white = (255, 255, 255)
 grey = (200, 200, 200)
+lgrey = (220, 220, 220)
 black = (0, 0, 0)
 txt_colors = [black, [255, 0, 0], [0, 0, 255], [0, 255, 0], [255, 122, 0], [255, 255, 0], [255, 0, 255], [0, 255, 255], [112, 77, 57], grey]
 #globals
-#winsize = (1800, 900)
-graphsize = (800, 800)
-consize = (800, 800)
+dsize = pygame.display.Info()
+dsize = [dsize.current_w, dsize.current_h]
+graphsize = (int(dsize[1]*0.85), int(dsize[1]*0.85))
+consize = (int(dsize[1]*0.85), int(dsize[1]*0.85))
 boxsize = (400, 400)
 errsize = (400, 400)
-winsize = pygame.display.Info()
-winsize = winsize.masks
-winsize = (int(winsize[0]/9300), int(winsize[1]/73))
-win = pygame.display.set_mode(winsize, 0, 32)#use idsplaysize
+winsize = (dsize[0], dsize[1])
+win = pygame.display.set_mode(winsize, 0, 32)
 graph = pygame.Surface(graphsize)
 control = pygame.Surface(consize)
 errwin = pygame.Surface(errsize)   
@@ -30,9 +31,9 @@ inactivetick = pygame.image.load('inactivetick.png')
 FONT = pygame.font.Font(None, 32)
 font = pygame.font.Font(None, 20)
 fontobj = pygame.font.Font(None, 25)
-graphpos = (10, 10)
-conpos = (winsize[0] - (consize[0] + 10), 10)
-errpos = (100, 100)
+graphpos = (winsize[0]*0.01, (winsize[1]-graphsize[1])/2)
+conpos = (winsize[0]*0.99-consize[1], (winsize[1]-graphsize[1])/2)
+errpos = ((winsize[0]-errsize[0])/2, (winsize[1]-errsize[1])/2)
 clock = pygame.time.Clock()
 rotate = pygame.transform.rotate
 deg = math.degrees
@@ -79,7 +80,7 @@ def error(m):
     if text != None:
         err = m
         txt_surface = FONT.render(text, True, black)
-        errwin.blit(txt_surface, (5, 5)) 
+        errwin.blit(txt_surface, ((errsize[0]-len(text)*10)/2, errsize[1]*0.3)) 
         buttons.append(Button('ok'))
 
 def change(f):
@@ -159,14 +160,14 @@ def change(f):
             state = None
     objs[f].active = True
 
-class Button: 
+class Button:
     def __init__(self, btype, parent = None):
         if btype == 'add':
             self.rect = pygame.Rect(consize[0] - 100, len(inputs) * 50 +15, 70, 40)
         if btype == 'send':
             self.rect = pygame.Rect(consize[0] - 100, len(inputs) * 50 +15, 70, 40)
         if btype == 'ok':
-            self.rect = pygame.Rect(errsize[0]/2, errsize[1]/2, 140, 40)
+            self.rect = pygame.Rect(errsize[0]/2, errsize[1]/2, 40, 30)
         if btype == 'x':
             self.rect = pygame.Rect(consize[0]-30, len(inputs)*50+10,  20, 20) 
         self.color = inactive
@@ -351,15 +352,13 @@ class Obj:
                 self.tickpos.append([self.tickpos[0][0]+yfac, self.tickpos[0][1]+xfac]) 
                 self.tickpos.append([self.tickpos[0][0]-xfac, self.tickpos[0][1]-yfac])
                 self.tickpos.append([self.tickpos[0][0]-yfac, self.tickpos[0][1]-xfac]) 
-            for i in range(1,100):
+            for i in range(1,50):
                 xfac = cos(self.angle*pi/180)*i*timetick
                 yfac = sin(self.angle*pi/180)*i*timetick
                 self.xlinepos.append([self.xlinepos[0][0]+yfac,self.xlinepos[0][1]+xfac])
                 self.xlinepos.append([self.xlinepos[0][0]-yfac,self.xlinepos[0][1]-xfac])
                 self.linepos.append([self.linepos[0][0]+xfac, self.linepos[0][1]+yfac])
                 self.linepos.append([self.linepos[0][0]-xfac, self.linepos[0][1]-yfac])
-        else:
-            self.xline = None
         s = 10-pos[1]
         x = pos[0]+ s*tan(pi*self.angle/180.0)
         self.nrect = pygame.Rect(x+5, 10, len(self.n)*10+5, 20) 
@@ -381,7 +380,7 @@ class Obj:
                     x = pos[0]+ s*tan(pi*self.angle/180.0)
                     self.nrect = pygame.Rect(x+5, y, len(self.n)*10+5, 20) 
 
-    def draw(self):
+    def draw(self):  
         if self.active:
             self.line = rotate(activeline[self.cindex], self.angle)
         else:
@@ -391,23 +390,19 @@ class Obj:
                 graph.blit(self.ttick, self.tickpos[i])
             else:
                 graph.blit(self.xtick, self.tickpos[i])
-        if self.xline != None:
+
+        if abs(self.v) != 1:
             if self.active:
                 for pos in self.xlinepos:
                     graph.blit(self.xline, pos)
-                first = True
                 for pos in self.linepos:
-                    graph.blit(self.line, pos) 
-                    if first:
-                        self.line = rotate(inactiveline[self.cindex], self.angle)
-                        first = False
-
+                    graph.blit(self.line, pos)
             else:
                 graph.blit(self.line, self.linepos[0])
                 graph.blit(self.xline, self.xlinepos[0])
         pygame.draw.rect(graph, white, self.nrect, )
         graph.blit(self.n_surface, (self.nrect.x+4, self.nrect.y+2))
-        
+
 
     def handle(self, event):
         mousepos = (pygame.mouse.get_pos()[0]-graphpos[0], pygame.mouse.get_pos()[1]-graphpos[1])
@@ -439,6 +434,7 @@ objs.append(Obj())
 
 #main loop
 while running:
+    
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             running = False
@@ -451,11 +447,10 @@ while running:
         for inputbox in inputs:
             inputbox.n.handle(event)
             inputbox.x.handle(event)
-            inputbox.v.handle(event)
-            
+            inputbox.v.handle(event) 
         for obj in objs: 
             obj.handle(event)
-
+    starttime = time.time()
     graph.blit(xaxis, [0, graphsize[1]/2])
     for tick in xticks:
         graph.blit(tick[0], tick[1])
@@ -480,6 +475,8 @@ while running:
     graph.blit(txt_t, (txt_t_rect.x, txt_t_rect.y))
     graph.blit(txt_ct, (txt_ct_rect.x, txt_ct_rect.y))
 
+    endtime = time.time()
+    print endtime-starttime
     win.blit(graph, graphpos)
     win.blit(control, conpos)
     if err != None:
@@ -488,7 +485,7 @@ while running:
     pygame.display.update()
     control.fill(white)
     graph.fill(white)
-    errwin.fill(white)
+    errwin.fill(lgrey)
     win.fill(grey)
     clock.tick(30)
 pygame.quit()
