@@ -1,24 +1,25 @@
 \babel@toc {english}{}
 \contentsline {section}{\numberline {1}Relativit\IeC {\"a}t nach Newtonscher Physik}{3}{section.1}
 \contentsline {subsection}{\numberline {1.1}Bezugssystem}{3}{subsection.1.1}
-\contentsline {subsection}{\numberline {1.2}Wechsel von Bezugssystemen}{4}{subsection.1.2}
+\contentsline {subsection}{\numberline {1.2}Wechsel von Bezugssystemen}{3}{subsection.1.2}
 \contentsline {subsection}{\numberline {1.3}Minkoswsky Raumzeit diargamme}{4}{subsection.1.3}
 \contentsline {section}{\numberline {2}spezielle Relativit\IeC {\"a}t}{4}{section.2}
-\contentsline {subsection}{\numberline {2.1}Herleitung}{5}{subsection.2.1}
-\contentsline {subsection}{\numberline {2.2}transformation zwischen Bezubssytemen}{5}{subsection.2.2}
-\contentsline {subsection}{\numberline {2.3}Raumzeititnervall als erhaltene Gr\IeC {\"o}\IeC {\ss }e}{5}{subsection.2.3}
-\contentsline {subsection}{\numberline {2.4}Implikationen}{6}{subsection.2.4}
-\contentsline {subsection}{\numberline {2.5}Einchr\IeC {\"a}nkungen dieses Modells}{6}{subsection.2.5}
+\contentsline {subsection}{\numberline {2.1}Herleitung}{4}{subsection.2.1}
+\contentsline {subsection}{\numberline {2.2}Transformation zwischen Bezugssytemen}{5}{subsection.2.2}
+\contentsline {subsection}{\numberline {2.3}Raumzeititnerval als erhaltene Gr\IeC {\"o}\IeC {\ss }e}{6}{subsection.2.3}
+\contentsline {subsection}{\numberline {2.4}Vierervektoren und Vierergeschwindigkeiten}{6}{subsection.2.4}
+\contentsline {subsection}{\numberline {2.5}Implikationen}{6}{subsection.2.5}
+\contentsline {subsection}{\numberline {2.6}Einchr\IeC {\"a}nkungen dieses Modells}{6}{subsection.2.6}
 \contentsline {section}{\numberline {3}Programm}{7}{section.3}
 \contentsline {subsection}{\numberline {3.1}Nutzung}{7}{subsection.3.1}
-\contentsline {subsection}{\numberline {3.2}Button}{7}{subsection.3.2}
-\contentsline {subsubsection}{\numberline {3.2.1}Methoden}{7}{subsubsection.3.2.1}
+\contentsline {subsection}{\numberline {3.2}Button}{8}{subsection.3.2}
+\contentsline {subsubsection}{\numberline {3.2.1}Methoden}{8}{subsubsection.3.2.1}
 \contentsline {subsection}{\numberline {3.3}Input}{8}{subsection.3.3}
-\contentsline {subsubsection}{\numberline {3.3.1}Methoden}{8}{subsubsection.3.3.1}
-\contentsline {subsection}{\numberline {3.4}Box}{8}{subsection.3.4}
+\contentsline {subsubsection}{\numberline {3.3.1}Methoden}{9}{subsubsection.3.3.1}
+\contentsline {subsection}{\numberline {3.4}Box}{9}{subsection.3.4}
 \contentsline {subsubsection}{\numberline {3.4.1}Methoden}{9}{subsubsection.3.4.1}
 \contentsline {subsection}{\numberline {3.5}Obj}{9}{subsection.3.5}
-\contentsline {subsubsection}{\numberline {3.5.1}Methoden}{9}{subsubsection.3.5.1}
-\contentsline {subsection}{\numberline {3.6}Funktionen}{9}{subsection.3.6}
-\contentsline {section}{\numberline {4}Quellen}{9}{section.4}
-\contentsline {section}{\numberline {5}Notizen}{10}{section.5}
+\contentsline {subsubsection}{\numberline {3.5.1}Methoden}{10}{subsubsection.3.5.1}
+\contentsline {subsection}{\numberline {3.6}Funktionen}{10}{subsection.3.6}
+\contentsline {section}{\numberline {4}Quellen}{11}{section.4}
+\contentsline {section}{\numberline {5}Notizen}{11}{section.5}

@@ -11,7 +11,7 @@
     urlcolor=cyan,
 }
 \urlstyle{same}
-\author{{\Huge Jonas Berggren}}
+\author{{\Huge Carl Jonas Mikaelsson Berggren}}
 \font\myfont=cmr12 at 30pt
 \title{{\myfont Spezielle Relativität}}
 
@@ -20,46 +20,41 @@
 \tableofcontents
 \newpage
 \begin{abstract}
-In diesem Dokument erkläre ich wie ich ein Prgramm entwickelt habe, was Albert Einsteins spezielle Relativität visualisiert.
-Das Programm Arbeitet anhand von Monkoswki-Raumzeitdiagrammen, und nutzt Objektorientierte Programmierung.
+In diesem Dokument erkläre ich, wie ich ein Programm entwickelt habe, was Albert Einsteins spezielle Relativität visualisiert.
+Das Programm Arbeitet anhand von Minkowski-Raumzeitdiagrammen, und nutzt Objektorientierte Programmierung.
 
 Außerdem Erkläre ich die darunter liegende Physik und leite Lorentztransformation her.
-Dabei werde ich auf Relaitivät vorr Einstein, auf Minkowski-Raumzeit-diagramme, auf Transformationen zwischen Bezugssystemen, Auf die Implikation Spezieller Relativität, und desse Einschränkungen.
+Dabei werde ich auf Relativität vor Einstein, auf Minkowski-Raumzeit-Diagramme, auf Transformationen zwischen Bezugssystemen, Auf die Implikation Spezieller Relativität, und dessen Einschränkungen.
+Dabei beziehe ich mich nur auf spezielle Relativität und nehme inertiale Bezugssysteme in einer flachen Raumzeit an.
 \end{abstract}
 \section{Relativität nach Newtonscher Physik}
-Bevor wir über Einsteins spezielle Relativität reden können, müssen wir das Konzept von Raum, Zeit und bewegung klarstellen
+Bevor wir über Einsteins spezielle Relativität reden können, müssen wir das Konzept von Raum, Zeit und Bewegung klarstellen
 \subsection{Bezugssystem}
 %position Rotation Zeit, Geschwindgikeit
 Zunächst muss klar gestellt werden wie Position, Zeit und Geschwindigkeit gemessen werden.
-Dazu muss ein Kordinatensystem Räumlich und Zeitlich definiert werden.
+Dazu muss ein Koordinatensystem räumlich und zeitlich definiert werden.
 Dass Koordinatensystem hat einen Ursprung  mit $x = 0, y =0, z = 0$ und $t = 0$.
-Hierbei ist der Ursprung des Koordinatensystems in der Regel auf ein Objekt zu Beginn des Beobactungszeitraums bezogen.
-Für diese Betrachtung müssen folgende Bedingungen erfüllt sein:
-\begin{itemize}
-\item Das Bezugsystem muss inertial(unbeschleunigt) sein
-\item Die Raumzeit muss flach sein, es darf keine Gravitation wirken, ART
-\end{itemize}
-Durch die Tatsache, dass in allen Inertialen Bezussystemen die gleichen physiklaischen Gesetze gelten, sind alle Bezugssysteme gleich gültig.
-Es ist keine Universal gülige Aussage über die Position oder Geschwindigkeit eines Körpers, oder Zeitpunkt eines Ereignisses möglich.
-Demnach ist es nichts sagend zu sagen, man hätte zum Zeitpunkt $t$ die Position $x, y, z$ und bewge sich mit Gecshwindigkeit $\vec{v}$.
-Es muss immer ein Bezugpunkt gewählt werden z.b. Erdmittelpunkt %Ereignis als Zeit reserenz
-Bezugssysteme können sich also relativ zu eineander bewegen und dennoch gleichermaßen gültig das selbe Ereignis beschreiben.
+Hierbei liegt der Ursprung des Koordinatensystems in der Regel auf ein Objekt zu Beginn des Beobachtungszeitraums bezogen.
+Durch die Tatsache, dass in allen Inertialen Bezugssystemen die gleichen physikalischen Gesetze gelten, sind alle Bezugssysteme gleich gültig.
+Es ist keine universal-gültige Aussage über die Position oder Geschwindigkeit eines Körpers, oder Zeitpunkt eines Ereignisses möglich.
+Demnach ist es Bedeutungslos zu sagen, man hätte zum Zeitpunkt $t$ die Position $x, y, z$ und bewege sich mit einer Geschwindigkeit $\vec{v}$.
+Es muss immer ein Bezugspunkt gewählt werden z.b. Erdmittelpunkt, Upload des ersten http Dokuments.
+Bezugssysteme können sich also relativ zu eine ander bewegen und dennoch gleichermaßen gültig, das selbe Ereignis beschreiben.
 \subsection{Wechsel von Bezugssystemen}
 Ich werde mich im folgenden auf eine Raumdimension beschränke.
-Das Hinzufügen der anderen Raumdimensionen, kann Durch ersetzen der Richtungsabhängigen Größe
-n, durch Vekoren.
+Weitere Raumdimension können durch ersetzen der gerichteten Größen durch Vektoren hinzugefügt werden.
 $x$ wird demnach zu $\vec{0p}$, $v$ zu $\vec{v}$.
-dabei ist zu beachten das die gerichteten Relatistischen Effekte nur endlang der Bewgungsrichtung auftreten.
+Dabei ist zu beachten, dass die gerichteten relativistischen Effekte nur endlang der Bewegungsrichtung auftreten.
 
-Es wird zunäckst ein bezugssystem gewählt mit den Größen $x, t$ und $v$.
-Anschließend wir ein gestrichenes Bezugssystem gewählt mit den Größ $x', t'$ und $v'$, wobei $t = t'$ gilt.
-Aus unsere altäglichen erfarung geht hervor, dass für die Position eines, zu dem ungestrichenen Ststem statischen Objekt gilt: $x' = x-vt$
-Genau so gilt für geschwindigkeiten:
+Es wird zunächst ein bezugssystem gewählt mit den Größen $x, t$ und $v$.
+Anschließend wir ein gestrichenes Bezugssystem gewählt mit den Größen $x', t'$ und $v'$, wobei $t = t'$ gilt.
+Aus unserer alltäglichen Erfahrung geht hervor, dass für die Position eines, zu dem ungestrichenen Sytstem statischen Objekt gilt: $x' = x-vt$
+Genau so gilt für Geschwindigkeiten:
 \begin{equation}
 \label{vnewton}
 u' =u - v
 \end{equation}
-Hierbei ist v die Geschwindigkeit des Gestrichenen Bezugsystem und $u$ Die geschwindigkeit des betrachteten objekts.
+Hierbei ist v die Geschwindigkeit des gestrichenen Bezugssystems und $u$ Die Geschwindigkeit des betrachteten Objekts.
 \subsection{Minkoswsky Raumzeit diargamme}
 Das Minkowski Raumzeit Digramm betrachtet, in seiner üblichen Form, Objekte in einer Raumdimension und Zeit.
 Hierzu wird die Zeit auf die vertikale Achse gelegt und die Position auf die horizontale.
@@ -70,31 +65,48 @@ Die Speziele Relativität fügt ein entscheidendes Postulat hinzu:
 \item Die Lichgeschwindigkeit ist ein Universelle Konstante
 \end{itemize}
 Dies wirft direkt eine Frage auf:
-Wenn jemeand mich mit einer Taschenlampe anleuchtet wahrend ich mich auf ihn zu bewge, wie kann es dann sein, dass wir beiden den exakt gleichen wert für die Beschwindigkeit diese licht messen?
-Das Pstulat ist also nicht mit der Formel \ref{vnewton} vereinbar.
+Wenn jemand mich mit einer Taschenlampe anleuchtet wahrend ich mich auf ihn zu bewege, wie kann es dann sein, dass wir beiden den exakt gleichen wert für die Geschwindigkeit diese licht messen?
+Wenn eine Einzelne Geschwindigkeit immer identisch kann es nicht sein, dass Raum und Zeit erhaltene Größen sein.
 \subsection{Herleitung}
-Es werrde zwei Bezugsstysteme bertachtet, die sich relativ zu einander mit der Geschwindigkeit $v \neq 0$ bewegen.
+\label{herl}
+Es werden zwei Bezugssysteme betrachtet, die sich relativ zu einander mit der Geschwindigkeit $v \neq 0$ bewegen.
 In dem ungestrichenen Bezugssystem fliegt ein Photon zwischen zwei Spiegeln hin und her, die $l$ von einander entfernt sind.
-Um von eine Spiegel zum anderen zu gelangen muss das licht vom gestrichen System aus gesehen eine Größere Strecke $d$ zurücklegen, nähmlich:
+Um von einem Spiegel zum anderen zu gelangen muss das licht vom gestrichen System aus gesehen eine Größere Strecke $d$ zurücklegen, nämlich:
 \begin{equation}
 d^2 = l^2 + (vt')^2
 \end{equation}
-Da $d \neq l$ gilt aber beide Strecken mit der gleichen Geschwindigkeit zurückgeleggt werden muss $t' \neq t$gelten.
-DrÚckt man $d$ und $l$ in $c$ aus so gilt:
+Da $d \neq l$ gilt, jedoch beide Strecken mit der gleichen Geschwindigkeit zurückgelegt werden, muss $\Delta t' \neq \Delta t$ gelten.
+Drückt man $d$ und $l$ in $c$ aus so gilt:
 \begin{equation}
-c^2t'^2 = c^2t^2 + v^2t'^2
+c^2 \Delta t'^2 = c^2 \Delta t^2 + v^2 \Delta t'^2
 \end{equation}
-Dies kann dann durch substrahieren von $v^2t'^2$ um auskammern von $t'^2$ nach $t'$ augelöst werden.
-dann gilt:
+Dies kann dann durch substrahieren von $v^2 \Delta t'^2$ um ausklammern von $t'^2$ nach $t'$ aufgelöst werden.
+Dann gilt:
 \begin{equation}
-t' = \frac{t}{\sqrt{1-\frac{v^2}{c^2}}}
+\Delta t' = \frac{\Delta t}{\sqrt{1-\frac{v^2}{c^2}}}
 \end{equation}
-Teilt man nochtmal durch $t$ ergibt sich der Relativitätsfaktor $\gamma$:
+Teilt man nochmal durch $\Delta t$, ergibt sich der Relativitätsfaktor $\gamma$:
 \begin{equation}
+\label{gamma}
 \gamma = \frac{1}{\sqrt{1-\frac{v^2}{c^2}}}
 \end{equation}
-\subsection{transformation zwischen Bezubssytemen}
-\subsection{Raumzeititnervall als erhaltene Größe}
+\subsection{Transformation zwischen Bezugssytemen}
+Dies löst aber nicht direkt die Frage der Geschwindigkeitsaddition.
+Das Postulat ist nämlich nicht mit der Formel \ref{vnewton} vereinbar.
+Geschwindigkeitsaddition muss daher neu definiert werden und zwar als:
+\begin{equation}
+v' = \frac{u + v}{1 + \frac{uv}{c^2}}
+\end{equation}
+Es gelten außerdem:
+\begin{equation}
+t' = \gamma(t \frac{vx}{c^2})
+\end{equation}
+\begin{equation}
+x' = \gamma(x + vt)
+\end{equation}
+$t$ und $x$ beschreiben die Position und den Zeitpunkt eines Ereignisses.
+Hingegen beschreibt $\Delta t$ aus Abschnitt \ref{herl} einen Zeitabstand.
+\subsection{Raumzeititnerval als erhaltene Größe}
 Nach der speziellen Relativität sind Raum, Zeit und sogar die Reihenfolge von ereignissen relativ.
 Es wirkt so als nur die Lichgeschwindigkeit konstant.
 Es gibt aber eine weiter Größe die unter Lorenztransformation invariant bleibt:
@@ -118,6 +130,7 @@ Gilt $\tau = 0$ so kann das eine Ereigniss das ander durch ein Lichtteilchen bei
 
 Ist $\tau$ positiv ist die Reinfolge der Ereignisse unversell.
 In dem Fall entspricht $\tau$ der Zeit die eine Uhr zwischen den Ereignissen messen würde, die sich von dem ersten zu den zweiten Ereignis bewegt.
+\subsection{Vierervektoren und Vierergeschwindigkeiten}
 \subsection{Implikationen}
 \subsection{Einchränkungen dieses Modells}
 Spezielle Relativität beschreibt nur inertiale Bezugssysteme in einer Flache Raumzeit.
@@ -204,13 +217,45 @@ Ist anschließend \colorbox{gray}{self.active} True werden die Tastatureingaben 
 \colorbox{gray}{Obj} ist das Herzstück des Programms.
 Es handhabt alle Einträge in das Diagramm.
 Es Arguente, die den Namen, den Index, die Position, die Geschwindigkeit, den Farbindex und t = 0 definieren.
+Es eren zunächst alle Argumente als Instanzvariablen gespeichert.
+Anschließend werden der Winkel der Weltlinien und ie Weltlinie definiert.
+anschießend wir \colorbox{gray}{pos} definiert was das errechnen von Punkten Entlang der Weltlinie massiv ereichtert.
+Falls der Betrag von\colorbox{gray}{self.v} kleiner als 1 ist werden zusÄtzlich graphisch Features definiert.
+Diese sind die Gleichzeitigkeitslinie für t=0, kleine Einheitmarker für x und t und das Gesamte Koordinatensystem für das Jeweilige Bezugsystem.
 
+Für die Gleichzeitigkeitslinie wird eine neue Linie erstel die um 90-\colorbox{gray}{self.angle} rotiert ist.
+Für die Einheitsmarker wird der Schnittpunkt zwischen den Beiden Gerade ermittelt.
+Von dort ausgehend werden iterativ neue Positionen für entlang der Geraden ermittelt die um eine Konstante $/cdot \gamma$ von einander entfernt sind.
+
+Ähnlich wird auch das Koordinatensystem definiert.
+Hier wird jedoch der Referenzpunkt der Geraden als Startpunkt gewählt.
+
+Zuletz wird die Position des Namens definiert.
+Der Name Steht immer rechts neben der Weltlinie soweit oben wie es möglich ist ohne das zwei namen kolidieren.
 \subsubsection{Methoden}
+\colorbox{gray}{draw} prüft ob \colorbox{gray}{self.v} gleich 1 ist.
+Wenn das der Fall ist wird nur die Weltlinie gezeichnet.
+Andernfall werden mindestens die Einheitsmarker, und die Gleichzeitigkeitslinie hinzugefügt.
+Ist \colorbox{gray}{self.active} wird zusätzlich nich das Gesamte Koordinantensystem gezeichnet.
+\\
+
+\colorbox{gray}{handle} handhabt das Nutzerverhalten in Bezug auf das Diagramm.
+befindet sich die Maus über der Weltlinie, wird \colorbox{gray}{self.active} zu True.
+Wir die Weltlinie angeklickt, wird die Funktion \colorbox{gray}{change} aufgerufen, und somit das wechseln des Bezugsystem initiiert.
+Wie das Funktioniert ist in Abschnit \ref{func} näher erklärt.
 \subsection{Funktionen}
+\label{func}
 Die Funktion error wird von der Funktion enter bei jedem Fehlerfall aufgerufen.
 Es wird ein Fallspezifischer Fehlerwert übergeben.
 Die Funktion error erstellt ein Fenster auf dem eine fehlerspezifische Nachricht angezeigt wird.
 Außerdem wir ein 'ok' button erstellt mit dem das fenster wieder geschlossen werden kann.
+\\
+
+Die funktion \colorbox{gray}{change} wird aufgerufen wenn der Nutzer eine Weltlinie anklickt und danach in jeder Iteration er Programms, bis die Lorenztransformation ferig ist.
+Sie nimmt den Index des gewünschten Bezugsystems als Argument.
+Die Änderung der Bezugsystems wird der anschauligkeitshalber für jede Größe nacheinander gemacht.
+zuerst wird endlang der x-Achse verschoben, dann wird die Geschwindigkeit angepasst und zuletzt t justiert.
+Dies alles wird aber nicht in Schleifen in der Funktion gemacht, da so die zwischenschritte zur fertigen Transformation nicht gezeichet werden Würde.
 \section{Quellen}
 Loedel-Minkowski-Diagramm; zweidimensionale Raumzeit(Zugriff: 06.09.2019):
 

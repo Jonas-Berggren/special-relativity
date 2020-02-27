@@ -385,23 +385,29 @@ class Obj:
             self.line = rotate(activeline[self.cindex], self.angle)
         else:
             self.line = rotate(inactiveline[self.cindex], self.angle)
-        for i in range(len(self.tickpos)):
-            if i%2 == 0:
-                graph.blit(self.ttick, self.tickpos[i])
-            else:
-                graph.blit(self.xtick, self.tickpos[i])
+        if abs(self.v) != 1:
+            for i in range(len(self.tickpos)):
+                if i%2 == 0:
+                    graph.blit(self.ttick, self.tickpos[i])
+                else:
+                    graph.blit(self.xtick, self.tickpos[i])
 
         if abs(self.v) != 1:
             if self.active:
                 for pos in self.xlinepos:
                     graph.blit(self.xline, pos)
+                first = True
                 for pos in self.linepos:
                     graph.blit(self.line, pos)
+                    if first:
+                        self.line = rotate(inactiveline[self.cindex], self.angle)
+                        first = False
             else:
                 graph.blit(self.line, self.linepos[0])
                 graph.blit(self.xline, self.xlinepos[0])
         pygame.draw.rect(graph, white, self.nrect, )
         graph.blit(self.n_surface, (self.nrect.x+4, self.nrect.y+2))
+        graph.blit(self.line, self.linepos[0])
 
 
     def handle(self, event):
@@ -421,10 +427,7 @@ class Obj:
             if deg(atan(valmin)) < self.angle and deg(atan(valmax)) > self.angle:
                 self.active = True
                 if event.type == pygame.MOUSEBUTTONDOWN:
-                    for i in range(len(objs)):
-                        if objs[i] == self:
-                            change(i)
-                            break
+                    change(self.index)
             else:
                 self.active = False
 
@@ -450,7 +453,6 @@ while running:
             inputbox.v.handle(event) 
         for obj in objs: 
             obj.handle(event)
-    starttime = time.time()
     graph.blit(xaxis, [0, graphsize[1]/2])
     for tick in xticks:
         graph.blit(tick[0], tick[1])
@@ -475,8 +477,6 @@ while running:
     graph.blit(txt_t, (txt_t_rect.x, txt_t_rect.y))
     graph.blit(txt_ct, (txt_ct_rect.x, txt_ct_rect.y))
 
-    endtime = time.time()
-    print endtime-starttime
     win.blit(graph, graphpos)
     win.blit(control, conpos)
     if err != None:
