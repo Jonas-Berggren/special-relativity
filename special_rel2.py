@@ -63,11 +63,16 @@ delbuttons = []
 xaxis = rotate(inactiveline[0], 90)
 xticks = []
 for i in range(int(graphsize[0] / 40)):
-    xticks.append((rotate(inactivetick, 90), (i*40, graphsize[1]/2)))
+    x = i*40
+    xticks.append((rotate(inactivetick, 90), (graphsize[0]/2 + x, graphsize[1]/2)))
+    xticks.append((rotate(inactivetick, 90), (graphsize[0]/2 - x, graphsize[1]/2)))
 yaxis = inactiveline[0]
 yticks = []
 for i in range(int(graphsize[1] / 40)):
-    yticks.append((inactivetick, (graphsize[0]/2, i*40)))
+    x = i*40
+
+    yticks.append((inactivetick, (graphsize[0]/2, graphsize[1]/2 + x)))
+    yticks.append((inactivetick, (graphsize[0]/2, graphsize[1]/2 - x)))
 
 def error(m):
     global err 

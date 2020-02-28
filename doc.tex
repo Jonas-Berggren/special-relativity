@@ -1,7 +1,10 @@
+%code kommentieren, tau, rechtschreibung, 
 \documentclass[12pt]{article}
+\usepackage{wrapfig}
 \usepackage{siunitx}
 \usepackage[utf8]{inputenc}
 \usepackage[english]{babel}
+\usepackage{graphicx}
 \usepackage{hyperref}
 \usepackage{xcolor}
 \hypersetup{
@@ -29,48 +32,61 @@ Dabei beziehe ich mich nur auf spezielle Relativität und nehme inertiale Bezugs
 \end{abstract}
 \section{Relativität nach Newtonscher Physik}
 Bevor wir über Einsteins spezielle Relativität reden können, müssen wir das Konzept von Raum, Zeit und Bewegung klarstellen
-\subsection{Bezugssystem}
+\subsection{Bezugssysteme}
 %position Rotation Zeit, Geschwindgikeit
 Zunächst muss klar gestellt werden wie Position, Zeit und Geschwindigkeit gemessen werden.
 Dazu muss ein Koordinatensystem räumlich und zeitlich definiert werden.
-Dass Koordinatensystem hat einen Ursprung  mit $x = 0, y =0, z = 0$ und $t = 0$.
+Dass Koordinatensystem hat einen Ursprung  mit $x = y = z = t = 0$.
 Hierbei liegt der Ursprung des Koordinatensystems in der Regel auf ein Objekt zu Beginn des Beobachtungszeitraums bezogen.
 Durch die Tatsache, dass in allen Inertialen Bezugssystemen die gleichen physikalischen Gesetze gelten, sind alle Bezugssysteme gleich gültig.
 Es ist keine universal-gültige Aussage über die Position oder Geschwindigkeit eines Körpers, oder Zeitpunkt eines Ereignisses möglich.
 Demnach ist es Bedeutungslos zu sagen, man hätte zum Zeitpunkt $t$ die Position $x, y, z$ und bewege sich mit einer Geschwindigkeit $\vec{v}$.
 Es muss immer ein Bezugspunkt gewählt werden z.b. Erdmittelpunkt, Upload des ersten http Dokuments.
 Bezugssysteme können sich also relativ zu eine ander bewegen und dennoch gleichermaßen gültig, das selbe Ereignis beschreiben.
-\subsection{Wechsel von Bezugssystemen}
+\subsection{Galilei-Transformation}
 Ich werde mich im folgenden auf eine Raumdimension beschränke.
 Weitere Raumdimension können durch ersetzen der gerichteten Größen durch Vektoren hinzugefügt werden.
 $x$ wird demnach zu $\vec{0p}$, $v$ zu $\vec{v}$.
 Dabei ist zu beachten, dass die gerichteten relativistischen Effekte nur endlang der Bewegungsrichtung auftreten.
+Wie dies funktioniert wird in Abschnitt \ref{4v} näher erläutert.
 
 Es wird zunächst ein bezugssystem gewählt mit den Größen $x, t$ und $v$.
 Anschließend wir ein gestrichenes Bezugssystem gewählt mit den Größen $x', t'$ und $v'$, wobei $t = t'$ gilt.
-Aus unserer alltäglichen Erfahrung geht hervor, dass für die Position eines, zu dem ungestrichenen Sytstem statischen Objekt gilt: $x' = x-vt$
+Aus unserer alltäglichen Erfahrung geht hervor, dass für die Position eines, zu dem ungestrichenen Sytstem statischen Objekt gilt: 
+\begin{equation}
+x' = x-vt
+\end{equation}
 Genau so gilt für Geschwindigkeiten:
 \begin{equation}
 \label{vnewton}
 u' =u - v
 \end{equation}
 Hierbei ist v die Geschwindigkeit des gestrichenen Bezugssystems und $u$ Die Geschwindigkeit des betrachteten Objekts.
-\subsection{Minkoswsky Raumzeit diargamme}
-Das Minkowski Raumzeit Digramm betrachtet, in seiner üblichen Form, Objekte in einer Raumdimension und Zeit.
+
+\begin{wrapfigure}{R}{0.4\textwidth}
+\centering
+\includegraphics[width=0.3\textwidth]{Minkowski_diagram.png}
+\end{wrapfigure}
+\subsection{Minkowsky-Raumzeitdiagramme}
+Das Minkowski-Raumzeitdiagramm betrachtet, in seiner üblichen Form, Objekte in einer Raumdimension und Zeit.
 Hierzu wird die Zeit auf die vertikale Achse gelegt und die Position auf die horizontale.
-Für die Betrachtung von spezieller Relativität werden die Einheiten einfachheitshalber so gewählt, dass die Lichtgeschwindigkeit $c = 1$ und $x = t$.
+Für die Betrachtung von spezieller Relativität werden die Einheiten einfachheitshalber so gewählt, dass für die Lichtgeschwindigkeit $c = 1$ und $x = ct$ gelten.
+Objekte werden als Gerade Dargestellt und Ereignisse als Punkte.
+
 \section{spezielle Relativität}
-Die Speziele Relativität fügt ein entscheidendes Postulat hinzu:
+%spacelike, timelike
+%lightcone
+Die spezielle Relativität fügt ein entscheidendes Postulat hinzu:
 \begin{itemize}
-\item Die Lichgeschwindigkeit ist ein Universelle Konstante
+\item Die Lichtgeschwindigkeit ist ein universelle Konstante
 \end{itemize}
 Dies wirft direkt eine Frage auf:
-Wenn jemand mich mit einer Taschenlampe anleuchtet wahrend ich mich auf ihn zu bewege, wie kann es dann sein, dass wir beiden den exakt gleichen wert für die Geschwindigkeit diese licht messen?
-Wenn eine Einzelne Geschwindigkeit immer identisch kann es nicht sein, dass Raum und Zeit erhaltene Größen sein.
+Wenn jemand mich mit einer Taschenlampe anleuchtet während ich mich auf ihn zu bewege, wie kann es dann sein, dass wir beiden den exakt gleichen wert für die Geschwindigkeit diese lichts messen?
+Wenn eine Einzelne Geschwindigkeit immer identisch ist ist es unmöglich, dass Raum und Zeit erhaltene Größen sind.
 \subsection{Herleitung}
 \label{herl}
 Es werden zwei Bezugssysteme betrachtet, die sich relativ zu einander mit der Geschwindigkeit $v \neq 0$ bewegen.
-In dem ungestrichenen Bezugssystem fliegt ein Photon zwischen zwei Spiegeln hin und her, die $l$ von einander entfernt sind.
+In dem ungestrichenen Bezugssystem fliegt ein Photon zwischen zwei Spiegeln hin und her, die eine Strecke $l$ von einander entfernt sind.
 Um von einem Spiegel zum anderen zu gelangen muss das licht vom gestrichen System aus gesehen eine Größere Strecke $d$ zurücklegen, nämlich:
 \begin{equation}
 d^2 = l^2 + (vt')^2
@@ -90,11 +106,13 @@ Teilt man nochmal durch $\Delta t$, ergibt sich der Relativitätsfaktor $\gamma$
 \label{gamma}
 \gamma = \frac{1}{\sqrt{1-\frac{v^2}{c^2}}}
 \end{equation}
-\subsection{Transformation zwischen Bezugssytemen}
+\subsection{Transformation zwischen Bezugssystemen}
+\label{trans}
 Dies löst aber nicht direkt die Frage der Geschwindigkeitsaddition.
 Das Postulat ist nämlich nicht mit der Formel \ref{vnewton} vereinbar.
 Geschwindigkeitsaddition muss daher neu definiert werden und zwar als:
 \begin{equation}
+\label{v}
 v' = \frac{u + v}{1 + \frac{uv}{c^2}}
 \end{equation}
 Es gelten außerdem:
@@ -106,11 +124,12 @@ x' = \gamma(x + vt)
 \end{equation}
 $t$ und $x$ beschreiben die Position und den Zeitpunkt eines Ereignisses.
 Hingegen beschreibt $\Delta t$ aus Abschnitt \ref{herl} einen Zeitabstand.
-\subsection{Raumzeititnerval als erhaltene Größe}
+\subsection{Raumzeititnerval als erhaltene Größe}%in 4v einbauen
+%Formulierung checken
 Nach der speziellen Relativität sind Raum, Zeit und sogar die Reihenfolge von ereignissen relativ.
 Es wirkt so als nur die Lichgeschwindigkeit konstant.
 Es gibt aber eine weiter Größe die unter Lorenztransformation invariant bleibt:
-Die sogenannte Eigenzeit
+Die sogenannte Eigenzeit%Raumzeitinterval
 \begin{equation}
 \tau^2 = (\Delta ct)^2 - {\Delta x}^2 - {\Delta y}^2 - {\Delta z}^2
 \end{equation}
@@ -129,9 +148,95 @@ Weltlinien die flacher sind als $\tau$ sind jedoch unzulässig
 Gilt $\tau = 0$ so kann das eine Ereigniss das ander durch ein Lichtteilchen beinflussen, jedoch nicht durch ein massebehaftetes Signal.
 
 Ist $\tau$ positiv ist die Reinfolge der Ereignisse unversell.
-In dem Fall entspricht $\tau$ der Zeit die eine Uhr zwischen den Ereignissen messen würde, die sich von dem ersten zu den zweiten Ereignis bewegt.
+In dem Fall entspricht $\tau$ der Zeit die eine Uhr zwischen den Ereignissen messen würde, die sich von dem ersten zu den zweiten Ereignis bewegt
+.%proper wenn tau > 0
 \subsection{Vierervektoren und Vierergeschwindigkeiten}
+%Matrix
+\label{4v}
+Vorweg etwas zur Notation: 4-dimensionale Vektoren haben den tiefgestellte Index $\mu$ während 3-dimensional euklidische Vektore $i$ stattdessen haben.
+Vierervektoren, oder auch 4-Vektoren, stellen eine Móglichkeit dar Speziele Relativität auf alle drei Raumdimensionen anzuwenden.
+Hierzu wird einem Vektor eine Zeit-Komponente Hinzugefügt.
+\begin{equation}
+X_\mu = (c\Delta t, \Delta x, \Delta y, \Delta z)
+\end{equation}
+Der Raum der 4-Vekoren verhält sich ähnlich wie der Raum der gewöhnlichen Vektoren.
+
+Die Geometrie Entspricht hier jedoch nicht mehr der Euklidischen Geometrie sondern der Minkowski-Metrik.
+Der Maßgebliche unterschied besteht darin, dass Abstände nicht als $\sqrt{\Delta a_1^2 + \Delta a_2^2 + ... + \Delta a_n^2}$ definiert sind sondern als $\sqrt{\Delta a_1^2 - \Delta a_2^2} - ... - \Delta a_n^2$.%hier tau einbauen
+Somit sind Negatiev Abstände möglich.
+Außerdem können so ungleiche Punkte dennoch einen Abstand von 0 aufweisen.
+Skalare sind in dem Zusammenhand auch anders definiert.
+Skalare sind nun alle physikalischen Größen die in allen Bezugsystemen identisch sind.
+Dies sind zum Beispiel $\tau$ zwischen zwei Ereignissen.%weitere
+
+Mit 4-Vektoren sind die selben Operationen möglich wie mit normalen 3-dimensionalen Vektoren.
+Allerdings sind sie auf Grund der Minkowski-Metrik anders definiert.
+%transformationmatrix
+Für Skalarmultplikation zwischen Vektoren git:
+\begin{equation}
+	a_\mu \cdot b_\mu = a_0 b_0 - a_1 b_1 - a_2 b_2 - a_3 b_3
+\end{equation}
+Demnach gilt außerdem:
+\begin{equation}
+X_\mu ^2 = (c\Delta t)^2 - \Delta x^2 - \Delta y^2 - \Delta z^2 = \tau^2
+\end{equation}
+
+Multipliziert man 4-Vektoren mit einander ist das Ergenis immer ein Skalar.
+Multpliziert man 4-Vekoren imt Skalaren ist das Ergebnis ein 4-Vektor.
+
+Ähnlich wie in der Euklidischen Geomtrie $\vec{v} = \frac{\vec{s}}{t}$ gilt, Gilt f dei 4-Geschwindigkeit:
+\begin{equation}
+	U_\mu = \frac{X_\mu}{\tau} = \gamma(|u_i|) (c,u_i)
+\end{equation}
+Dies stellt den Bewegungsvektor jedes Objekts durch die Raumzeit dar.
+Dabei gilt:
+\begin{equation}
+u_i = \vec{v}
+\end{equation}
+Nun soll der Betrag der 4-Geschwindigkeit ermittelt werden.
+\begin{equation}
+U_\mu ^2 = (\gamma(u))^2(c^2-|u|^2) = \frac{1}{1-(\frac{u^2}{c^2})} (c^2 - u^2)
+\end{equation}
+erweitert man $\gamma$ um $c^2$ gilt:
+\begin{equation}
+	U_\mu = \frac{c^2}{c^2 - u^2} c^2 - u^2 = c^2 \frac{c^2 - u^2}{c^2 - u^2} = c^2
+\end{equation}
+\begin{equation}
+	|U_\mu| = \sqrt{U_\mu^2} = c
+\end{equation}
+Dies bedeutet, dass sich alles mit Lichtgeschwindigkeit durch die Raumzeit bewegt.
+Steht man still hat diese Bewegung nur eine Zeitkomponente.
+Bewegt man sich jedoch mit Lichtgeschwingkeit durch den Raum ist die Zeitokompente der Bewgung gleich 0.
+\begin{wrapfigure}{R}{0.5\textwidth}
+\centering
+\includegraphics[width=0.4\textwidth]{gamma.png}
+\end{wrapfigure}
 \subsection{Implikationen}
+Dass all diese Effekte nichts mit unserer alltäglichen Erfahrung zu tun haben liegt an Dem Steigungsverhalten von $\gamma$ und der enormen Größen von $c$.
+\begin{equation}
+c = 299792458 \frac{m}{s}
+\end{equation}
+Die Parker Solarsonde, eins der schnellsten menchengemachten Objekte, hat eine Geschwindigkeit von etwa $51291 \frac{m}{s} = 1.71 \cdot 10^{-4} c$.
+Der Lorentzfaktor für diese Sonder bertägt $\gamma = 1 + 1.5\cdot10^{-8}$.
+
+Deswegen fordert Sspezielle Relativität unster Vorstellungsvermogen immer wiedeer heraus.
+Dies wird in einerr Vielzahl von Paradoxen deutlich die sich daraus ergeben.
+Alle dieser Pardoxen sind Mathematisch Vergleichsweise einfach zu lösen.
+
+Ein Paradoxon ist zum Beispiel das Tunnel-Paradoxon:
+Ein sehr schneller Zug fährt durch ein Tunnel der kürzer ist als der Zug.
+An Eingang und Ende des Tunnels befinden sich Tore die sehr schnell geöffnet und wieder geschlossen werden können.
+Aus der Perspektive einer Person die neben des Gleisen steht wird der Zug durch den Lorentzfaktor verkürzt.
+Dadurch können sich die Tore kurz gleichzeitigscließen ohne, dass es Zum Unfall kommt.
+Aus dem Bezugssystem eines Fahrgasts wird jedoch der Tunnel gestaucht.
+Daher hätte ein gleichzeitiges schließen der Tore zweifellos katstrophale folgen.
+Wie sind diese beiden Beschreibungen vereinbar?
+Wir wissen nun aus Abschnitt \ref{trans}, dass Zeit, und gleichzeitigkeit relativ sind.
+in dem Beispiel würde der Passnt sehen, dass sich die Tore gleichzeitig schließen.
+Für Fahrgast würde sich edoch erst das eine und dann das andere Tor schließen.
+
+Außerdem ergibt sich unter anderem aus der Gleichung \ref{v} eine Geschwidigkeit größer als $c$ unmöglich ist.
+Da dies für alle Objekte gilt, somit auch für Information,  ist dies auch die Geschwindigkeit von Kausalität.
 \subsection{Einchränkungen dieses Modells}
 Spezielle Relativität beschreibt nur inertiale Bezugssysteme in einer Flache Raumzeit.
 
@@ -142,7 +247,7 @@ Dies löst zum Beispiel das bekannt Zwilligspardoxon:
 Ein Zwilling Fährt auf eine Raummision bei der er mit beispielsweise halber Lichtgeschwindigkeit durch das All fliegt, während sein Bruder auf der Erde vebleibt.
 Als er zur Erde zurückkehrt stellt sich die Frage wer nun älter ist
 Nach der Speziellen Relativitität können sich beide Zwillinge für den Zeitraum der mission als statisch betrachten und den anderen als bewegt.
-demnach kommen beide zudem Schluss, dass sie selbs jünger sein sollten.
+Demnach kommen beide zudem Schluss, dass sie selbs älter sein sollten.
 
 Dabei wird jedoch vernachlässigt, dass der Astronaut beispielsweis zu Alphacentauri fliegt dort umkehrt und wiederkommt.
 Dabei erfäht er eine Beschleungiung, die die Spezielle Relativität nicht vorsieht.
@@ -163,6 +268,23 @@ In dem rechten Feld können Geschwindigkeit und Startposisiton von Objekten eige
 Beim klicken der send-Taste wird die Weltlinie, und die dazu gehörige Gleichzeitigkeitslinie des Objektes in das Koordinatensystem eingezeichnet.
 Es können nach belieben Objekte hinzugefügt oder entfernt werden.
 Alle sichtbaren Weltlinien kónnen angeklick werden um die Lorentz-Transformation in das jewilige Bezugsystem beobacheten zu können.
+\\
+
+Zu Beginn läuft einmalig eine Initialisierungsroutine durch.
+Es pygame initialisiert und dann weredn alle globalen Variablen definiert.
+diese sind unter anderem Farben, Fenster, Oberfächen, Bilder, Listen, Mathemaatische Funktionen und textinhalte.
+
+Danach werden die Instanzen der Klassen definiert die zu beginn gebraucht werden.
+Anschließend staret die Hauptschleife.
+
+Sie beginnt damit durch alle pygameevents zu iterieren.
+Wird ein 'Schließen' Signal erfasst wird \colorbox{gray}{running} gleich False gesetzt, und das Programm somit beendet.
+
+Innerhalbdieser Schleife werden die pygaeevents an alle \colorbox{gray}{handle} Mathoden von allen Instanzen übergeben.
+
+Anschließend werden Die Koordinatenachsen gezeichet und die \colorbox{gray}{draw} Methoden von allen Instanzen aufgerufen.
+
+Zuletzt werden die Oberflächen auf das Fenster gezeichnet, das Bild erneuert, die Oberfächen zurückgesetzt.
 \subsection{Button}
 Die Klasse \colorbox{gray}{Button} dient zur Darstellung und Handhabe aller buttons.
 Diese Klasse nimmt einen Typ und optional, einen parent als Argument.
@@ -262,18 +384,6 @@ Loedel-Minkowski-Diagramm; zweidimensionale Raumzeit(Zugriff: 06.09.2019):
 %\url{https://www.youtube.com/watch?v=mJcRHBviHBI}
 \url{https://stackoverflow.com/questions/46390231/how-to-create-a-text-input-box-with-pygame}
 \url{https://www.youtube.com/playlist?list=PLD9DDFBDC338226CA}
-\section{Notizen}
-
-x = ct
-x' = ct - vt = (c-v)t'
-speed addition
-Raum, Zeit, Gleichzeitigkeit, Reinfolge
-Invariante Proper time
-propertime, if == 0 they can be connected by a lightbeam
-spacelike, timelike
-lightcone
-Fourvector
-Fourvelocity
-Gleichzeitigkeit t = vx
-Linie der Gleichzeitigkeit ist die Spigelung der Weltline entlang der Lichtlinie
+\url{http://edu-observatory.org/olli/Relativity/Minkowski_diagram.png}
+\url{https://www.youtube.com/playlist?list=PLDB7DB12B34395EC5}
 \end{document}
